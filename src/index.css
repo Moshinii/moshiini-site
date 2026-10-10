@@ -204,6 +204,44 @@
   .tilt-l-sm { rotate: -1deg; }
   .tilt-r-sm { rotate: 1deg; }
   .tilt-hover:hover { rotate: 0deg; }
+
+  /* campo de busca estilo neo */
+  .neo-input {
+    width: 100%;
+    border: 3px solid var(--color-night-soft);
+    border-radius: 9999px;
+    background: var(--color-card);
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-night-soft);
+    box-shadow: 4px 4px 0 var(--color-night-soft);
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .neo-input::placeholder {
+    color: var(--color-muted-foreground);
+  }
+  .neo-input:focus {
+    outline: none;
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0 var(--color-ring);
+  }
+
+  /* chip de comando (monoespaçado) */
+  .cmd-chip {
+    display: inline-flex;
+    align-items: center;
+    border: 3px solid var(--color-night-soft);
+    border-radius: 9999px;
+    background: var(--color-night);
+    color: rgb(50 237 187);
+    padding: 0.35rem 0.9rem;
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    box-shadow: 3px 3px 0 var(--color-night-soft);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

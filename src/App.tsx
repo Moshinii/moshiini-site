@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
 import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
 import { ComoFuncionaPage } from "@/pages/como-funciona"
+import { DocsPage } from "@/pages/docs"
 import { FaqPage } from "@/pages/faq"
 import { HomePage } from "@/pages/home"
 import { PrivacidadePage } from "@/pages/privacidade"
@@ -27,6 +28,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/como-funciona" element={<ComoFuncionaPage />} />
             <Route path="/faq" element={<FaqPage />} />
+            <Route path="/docs" element={<DocsPage />} />
             <Route path="/termos" element={<TermosPage />} />
             <Route path="/privacidade" element={<PrivacidadePage />} />
             <Route path="*" element={<HomePage />} />

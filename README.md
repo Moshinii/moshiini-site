@@ -5,7 +5,7 @@ painéis de produtos, carrinho, cobrança PIX com QR Code, tickets de entrega,
 cupons, sorteios, convites, honeypot anti-hack, modmail e criação de loja com IA.
 
 - Stack: **Vite + React + TypeScript + Tailwind CSS v4 + shadcn/ui** (estilo base-nova)
-- Rotas: `/` (home), `/como-funciona`, `/faq`, `/termos`, `/privacidade`
+- Rotas: `/` (home), `/como-funciona`, `/faq`, `/docs` (comandos), `/termos`, `/privacidade`
 - Design: neobrutalismo pastel — bordas 3px, sombras sólidas, Fredoka + Nunito
 
 ## Rodar local

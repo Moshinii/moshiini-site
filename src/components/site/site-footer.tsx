@@ -39,6 +39,7 @@ export function SiteFooter() {
           <Link to="/" className="w-fit text-sm text-muted-foreground underline-offset-4 outline-none hover:text-night-soft hover:underline">Início</Link>
           <Link to="/como-funciona" className="w-fit text-sm text-muted-foreground underline-offset-4 outline-none hover:text-night-soft hover:underline">Como funciona</Link>
           <Link to="/faq" className="w-fit text-sm text-muted-foreground underline-offset-4 outline-none hover:text-night-soft hover:underline">FAQ</Link>
+          <Link to="/docs" className="w-fit text-sm text-muted-foreground underline-offset-4 outline-none hover:text-night-soft hover:underline">Docs</Link>
         </nav>
 
         <nav aria-label="Legal" className="flex flex-col gap-2.5">
