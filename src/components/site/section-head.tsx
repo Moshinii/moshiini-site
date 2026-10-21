@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
 import { Badge } from "@/components/ui/badge"
-import { cn } from "cn"
+import type { BadgeVariant } from "@/components/ui/badge"
+import { cn } from "@/lib/utils"
 
 export function SectionHead({
   kicker,
@@ -11,7 +12,7 @@ export function SectionHead({
   className,
 }: {
   kicker: ReactNode
-  kickerVariant?: "default" | "mint" | "amber" | "lilac" | "rose" | "blurple" | "night"
+  kickerVariant?: BadgeVariant
   title: ReactNode
   lede?: ReactNode
   align?: "center" | "start"
@@ -43,7 +44,7 @@ export function PageHead({
   lede,
 }: {
   kicker: ReactNode
-  kickerVariant?: "default" | "mint" | "amber" | "lilac" | "rose" | "blurple" | "night"
+  kickerVariant?: BadgeVariant
   title: ReactNode
   lede?: ReactNode
 }) {

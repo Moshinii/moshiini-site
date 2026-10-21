@@ -1,6 +1,6 @@
 import { ArrowUpRightIcon } from "lucide-react"
 import { Link } from "react-router-dom"
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/card"
 import { INVITE_URL, SERVER_URL, asset } from "@/lib/site"
 
 export function SiteFooter() {
@@ -79,10 +79,11 @@ export function SiteFooter() {
             href={SERVER_URL}
             target="_blank"
             rel="noreferrer"
-            className="font-semibold text-night-soft underline underline-offset-4 outline-none hover:text-[#5865f2]"
+            className="font-semibold text-night-soft underline underline-offset-4 outline-none hover:text-blurple"
           >
             Discord
           </a>
+          — interface recriada em código, sem print de tela.
         </p>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
 /** Marca-texto: destaque arredondado atrás de palavras-chave dos títulos. */
 export function Hl({

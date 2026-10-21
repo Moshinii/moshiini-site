@@ -1,7 +1,6 @@
-import type { ReactNode } from "react"
 import { Badge } from "@/components/ui/badge"
-import { Card } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
+import type { BadgeVariant } from "@/components/ui/badge"
+import { Card, Separator } from "@/components/ui/card"
 
 export type LegalBlock =
   | { type: "p"; text: string }
@@ -14,7 +13,7 @@ export type LegalSection = {
 
 export type LegalDoc = {
   etiqueta: string
-  etiquetaVariant: "amber" | "mint" | "lilac" | "rose" | "blurple"
+  etiquetaVariant: BadgeVariant
   title: string
   meta: string[]
   intro: string
@@ -67,7 +66,7 @@ export function LegalArticle({ doc }: { doc: LegalDoc }) {
                   <h2 className="mb-4 flex items-center gap-3 text-2xl">
                     <span
                       aria-hidden
-                      className="grid size-9 shrink-0 place-items-center rounded-full border-[3px] border-night-soft bg-accent font-display text-base font-bold shadow-[2px_2px_0_var(--color-night-soft)]"
+                      className="grid size-9 shrink-0 place-items-center rounded-full border-[3px] border-night-soft bg-amber font-display text-base font-bold shadow-[2px_2px_0_var(--color-night-soft)]"
                     >
                       {i + 1}
                     </span>
@@ -86,7 +85,7 @@ export function LegalArticle({ doc }: { doc: LegalDoc }) {
                           <li key={k} className="flex items-start gap-3">
                             <span
                               aria-hidden
-                              className="mt-2 size-2.5 shrink-0 rounded-full border-2 border-night-soft bg-primary"
+                              className="mt-2 size-2.5 shrink-0 rounded-full border-2 border-night-soft bg-mint"
                             />
                             <span>
                               <Md text={item} />
@@ -102,24 +101,18 @@ export function LegalArticle({ doc }: { doc: LegalDoc }) {
           </div>
         </Card>
 
-        <p className="mt-6 text-center text-sm text-muted-foreground">{docOutro()}</p>
+        <p className="mt-6 text-center text-sm text-muted-foreground">
+          Servidor oficial:{" "}
+          <a
+            href="https://discord.gg/C5aP3HEujN"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold text-night-soft underline underline-offset-4 outline-none hover:text-blurple"
+          >
+            discord.gg/C5aP3HEujN
+          </a>
+        </p>
       </div>
-    </>
-  )
-}
-
-function docOutro(): ReactNode {
-  return (
-    <>
-      Servidor oficial:{" "}
-      <a
-        href="https://discord.gg/C5aP3HEujN"
-        target="_blank"
-        rel="noreferrer"
-        className="font-semibold text-night-soft underline underline-offset-4 outline-none hover:text-[#5865f2]"
-      >
-        discord.gg/C5aP3HEujN
-      </a>
     </>
   )
 }

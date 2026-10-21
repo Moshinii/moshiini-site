@@ -1,75 +1,52 @@
-import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
-import { cn } from "cn"
+import { useId, useState } from "react"
+import type { ReactNode } from "react"
 import { PlusIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
 
-function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
-  return (
-    <AccordionPrimitive.Root
-      data-slot="accordion"
-      className={cn("flex w-full flex-col gap-4", className)}
-      {...props}
-    />
-  )
-}
-
-function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
-  return (
-    <AccordionPrimitive.Item
-      data-slot="accordion-item"
-      className={cn("neo-card neo-card-hover px-5 sm:px-6", className)}
-      {...props}
-    />
-  )
-}
-
-function AccordionTrigger({
-  className,
+/**
+ * Acordeão próprio: um <AccordionItem> por pergunta, abre e fecha de forma
+ * independente. A animação usa a técnica de grid (0fr → 1fr), pura CSS.
+ */
+export function AccordionItem({
+  question,
   children,
-  ...props
-}: AccordionPrimitive.Trigger.Props) {
+  className,
+}: {
+  question: ReactNode
+  children: ReactNode
+  className?: string
+}) {
+  const [open, setOpen] = useState(false)
+  const panelId = useId()
   return (
-    <AccordionPrimitive.Header className="flex">
-      <AccordionPrimitive.Trigger
-        data-slot="accordion-trigger"
-        className={cn(
-          "group/accordion-trigger flex flex-1 cursor-pointer items-center justify-between gap-4 py-5 text-left font-display text-lg font-semibold text-balance outline-none",
-          className
-        )}
-        {...props}
+    <div className={cn("neo-card neo-card-hover px-5 sm:px-6", className)}>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((v) => !v)}
+        className="group/acc flex w-full cursor-pointer items-center justify-between gap-4 py-5 text-left font-display text-lg font-semibold text-balance outline-none"
       >
-        {children}
+        {question}
         <span
           aria-hidden
-          className="grid size-9 shrink-0 place-items-center rounded-full border-[3px] border-night-soft bg-primary shadow-[2px_2px_0_var(--color-night-soft)] transition-transform duration-150 group-aria-expanded/accordion-trigger:rotate-45"
+          className="grid size-9 shrink-0 place-items-center rounded-full border-[3px] border-night-soft bg-mint shadow-[2px_2px_0_var(--color-night-soft)] transition-transform duration-150 group-aria-expanded/acc:rotate-45"
         >
           <PlusIcon className="size-5" />
         </span>
-      </AccordionPrimitive.Trigger>
-    </AccordionPrimitive.Header>
-  )
-}
-
-function AccordionContent({
-  className,
-  children,
-  ...props
-}: AccordionPrimitive.Panel.Props) {
-  return (
-    <AccordionPrimitive.Panel
-      data-slot="accordion-content"
-      className="overflow-hidden data-open:animate-accordion-down data-closed:animate-accordion-up"
-      {...props}
-    >
+      </button>
       <div
-        className={cn(
-          "h-(--accordion-panel-height) border-t-[3px] border-dashed border-night-soft/25 pt-4 pb-5 leading-relaxed text-muted-foreground data-ending-style:h-0 data-starting-style:h-0 [&_a]:font-semibold [&_a]:text-night-soft [&_a]:underline [&_a]:underline-offset-3",
-          className
-        )}
+        id={panelId}
+        role="region"
+        className="grid transition-[grid-template-rows] duration-200 ease-out"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
       >
-        {children}
+        <div className="overflow-hidden">
+          <div className="border-t-[3px] border-dashed border-night-soft/25 pt-4 pb-5 leading-relaxed text-muted-foreground [&_a]:font-semibold [&_a]:text-night-soft [&_a]:underline [&_a]:underline-offset-4">
+            {children}
+          </div>
+        </div>
       </div>
-    </AccordionPrimitive.Panel>
+    </div>
   )
 }
-
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

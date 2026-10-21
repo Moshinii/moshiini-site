@@ -7,20 +7,15 @@ import {
 import { CtaButton } from "@/components/site/cta-button"
 import { Hl } from "@/components/site/hl"
 import { PageHead, SectionHead } from "@/components/site/section-head"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { AccordionItem } from "@/components/ui/accordion"
 import { Card } from "@/components/ui/card"
 import { SERVER_URL } from "@/lib/site"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
 const CHANNELS = [
   {
     icon: MessagesSquareIcon,
-    tone: "bg-[#5865f2] text-white",
+    tone: "bg-blurple text-white",
     title: "Servidor oficial",
     text: "Tire dúvidas com a comunidade e abra um ticket com a equipe da Moshiini.",
     href: SERVER_URL,
@@ -28,19 +23,19 @@ const CHANNELS = [
   },
   {
     icon: MailIcon,
-    tone: "bg-primary",
+    tone: "bg-mint",
     title: "DM no bot (modmail)",
     text: "Mande uma mensagem direta pra Moshiini: o modmail abre um ticket privado com a staff da loja ou do servidor.",
   },
   {
     icon: LifeBuoyIcon,
-    tone: "bg-accent",
+    tone: "bg-amber",
     title: "/ajuda",
     text: "Central de ajuda interativa dentro do Discord, com todos os comandos organizados por categoria e permissão.",
   },
   {
     icon: CircleHelpIcon,
-    tone: "bg-[#a78bfa]",
+    tone: "bg-lilac",
     title: "/sugestao",
     text: "Ideia ou pedido de recurso? Envia direto pro dono do bot pelo comando /sugestao (uma por dia).",
   },
@@ -75,11 +70,15 @@ const FAQ_ITEMS = [
     q: "Paguei e não confirmaram. E agora?",
     a: (
       <>
-        A confirmação é feita pela staff da loja, de forma manual — então pode
-        levar alguns minutos fora do horário de pico. Anexe o comprovante no
-        ticket e aguarde a resposta por ali. Se a loja não responder, fale com
-        a administração do servidor. A Moshiini não consegue confirmar pagamento
-        nem estornar compras, porque o dinheiro não passa pelo bot.
+        Em lojas <strong>Gratuitas</strong>, a confirmação é manual pela staff —
+        então pode levar alguns minutos fora do horário de pico. Anexe o
+        comprovante no ticket e aguarde por ali. Em lojas{" "}
+        <strong>Premium</strong>, a IA confere o comprovante (imagem ou PDF) e
+        confirma sozinha quando tudo bate — valor, destinatário, data e o
+        identificador do pedido —; qualquer divergência volta para a equipe
+        conferir. Se a loja não responder, fale com a administração do
+        servidor. A Moshiini não consegue estornar compras, porque o dinheiro
+        não passa pelo bot.
       </>
     ),
   },
@@ -99,9 +98,39 @@ const FAQ_ITEMS = [
     a: (
       <>
         O Premium custa <strong>R$ 0,50 por dia</strong> e remove os limites de
-        criação: produtos e painéis ilimitados, além de 10 gerações de loja com
-        IA por dia (no Gratuito são 3). A ativação é feita no Discord, com
-        /loja mudardeplano, após a confirmação do PIX.
+        criação: produtos e painéis ilimitados, 10 gerações de loja com IA por
+        dia (no Gratuito são 3) e as funções de IA —{" "}
+        <strong>editar a loja por texto</strong> mencionando o bot e o{" "}
+        <strong>leitor de comprovante</strong> nos tickets. A ativação é no
+        Discord, com /loja mudardeplano: paga o PIX, envia o comprovante na DM
+        e a IA valida e destrava na hora.
+      </>
+    ),
+  },
+  {
+    q: "Como funciona a ativação automática do Premium?",
+    a: (
+      <>
+        Depois de pagar o PIX da licença, toque em <strong>Já Paguei</strong> na
+        DM da cobrança e envie o comprovante (imagem ou PDF) na mesma conversa.
+        A IA confere o valor, o destinatário, a data e o identificador da
+        cobrança — tudo batendo, a assinatura ativa em segundos, sem esperar
+        aprovação. Se algo divergir ou a IA estiver fora do ar, o dono do bot
+        aprova manualmente como sempre. Nada fica no limbo.
+      </>
+    ),
+  },
+  {
+    q: "Como edito minha loja sem abrir a Central?",
+    a: (
+      <>
+        No plano Premium, <strong>mencione o bot e escreva em português</strong>:
+        <em> @Moshiini muda o preço do Mush para 1 real</em>,{" "}
+        <em>“estoque infinito no produto VIP”</em>,{" "}
+        <em>“desativa a Conta Premium”</em>. Funciona para preço, estoque,
+        status, renomear, descrição, título/cor de painel e adicionar ou
+        remover produto de painel — o bot aplica na hora e mostra o antes →
+        depois. Só o dono do servidor consegue usar.
       </>
     ),
   },
@@ -191,7 +220,7 @@ export function FaqPage() {
                     {channel.text}
                   </span>
                   {channel.href ? (
-                    <span className="mt-1 font-display text-sm font-semibold text-[#5865f2] underline underline-offset-4">
+                    <span className="mt-1 font-display text-sm font-semibold text-blurple underline underline-offset-4">
                       {channel.linkLabel} →
                     </span>
                   ) : null}
@@ -237,19 +266,18 @@ export function FaqPage() {
           title="Respostas diretas"
           className="mb-10"
         />
-        <Accordion>
+        <div className="flex flex-col gap-4">
           {FAQ_ITEMS.map((item) => (
-            <AccordionItem key={item.q} value={item.q}>
-              <AccordionTrigger>{item.q}</AccordionTrigger>
-              <AccordionContent>{item.a}</AccordionContent>
+            <AccordionItem key={item.q} question={item.q}>
+              {item.a}
             </AccordionItem>
           ))}
-        </Accordion>
+        </div>
       </section>
 
       {/* ---------- CTA ---------- */}
       <section className="mx-auto max-w-6xl px-5 pt-6 pb-4 sm:px-6" aria-labelledby="cta">
-        <div className="neo-card bg-primary p-8 text-center sm:p-12">
+        <div className="neo-card bg-mint p-8 text-center sm:p-12">
           <h2 className="mx-auto max-w-2xl text-3xl sm:text-4xl">
             Ainda com dúvida?
           </h2>

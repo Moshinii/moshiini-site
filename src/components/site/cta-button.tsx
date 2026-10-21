@@ -1,14 +1,15 @@
 import { ArrowRightIcon } from "lucide-react"
 import type { ReactNode } from "react"
-import { Button, buttonVariants } from "@/components/ui/button"
-import type { VariantProps } from "class-variance-authority"
-import { cn } from "cn"
+import { ButtonLink } from "@/components/ui/button"
+import type { BtnSize, BtnVariant } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 type CtaButtonProps = {
-  href: string
+  href?: string
+  to?: string
   children: ReactNode
-  variant?: VariantProps<typeof buttonVariants>["variant"]
-  size?: VariantProps<typeof buttonVariants>["size"]
+  variant?: BtnVariant
+  size?: BtnSize
   className?: string
   external?: boolean
 }
@@ -16,6 +17,7 @@ type CtaButtonProps = {
 /** CTA primário: círculo branco com seta que desliza +3px no hover. */
 export function CtaButton({
   href,
+  to,
   children,
   variant = "default",
   size = "lg",
@@ -23,16 +25,13 @@ export function CtaButton({
   external = true,
 }: CtaButtonProps) {
   return (
-    <Button
+    <ButtonLink
+      href={href}
+      to={to}
+      external={external}
       variant={variant}
       size={size}
       className={cn("pl-6 sm:pl-8", className)}
-      render={
-        <a
-          href={href}
-          {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-        />
-      }
     >
       {children}
       <span
@@ -41,6 +40,6 @@ export function CtaButton({
       >
         <ArrowRightIcon className="size-4" />
       </span>
-    </Button>
+    </ButtonLink>
   )
 }

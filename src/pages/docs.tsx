@@ -9,13 +9,14 @@ import {
   StoreIcon,
   UsersIcon,
 } from "lucide-react"
+import { CtaButton } from "@/components/site/cta-button"
 import { Hl } from "@/components/site/hl"
 import { PageHead, SectionHead } from "@/components/site/section-head"
 import { Badge } from "@/components/ui/badge"
+import type { BadgeVariant } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { INVITE_URL } from "@/lib/site"
-import { CtaButton } from "@/components/site/cta-button"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
 type Tag = "TODOS" | "GERENTE+" | "DONO DO SERV" | "DONO DO BOT"
 
@@ -35,7 +36,7 @@ type CommandGroup = {
   note?: string
 }
 
-const TAG_STYLES: Record<Tag, { label: string; variant: "mint" | "amber" | "lilac" | "night" }> = {
+const TAG_STYLES: Record<Tag, { label: string; variant: BadgeVariant }> = {
   TODOS: { label: "Todos", variant: "mint" },
   "GERENTE+": { label: "Gerente+", variant: "amber" },
   "DONO DO SERV": { label: "Dono do servidor", variant: "lilac" },
@@ -223,9 +224,11 @@ const GROUPS: CommandGroup[] = [
       {
         name: "/loja mudardeplano",
         tag: "DONO DO SERV",
-        desc: "Compra ou renova a licença Premium (R$ 0,50/dia). Paga o PIX e a loja destrava.",
+        desc: "Compra ou renova a licença Premium (R$ 0,50/dia). Paga o PIX na DM e envia o comprovante: a IA valida e a licença ativa na hora — se algo divergir, o dono do bot aprova manualmente.",
+        exemplo: "30 dias · R$ 15,00 → comprovante → ativada em segundos",
       },
     ],
+    note: "Fora dos comandos: no plano Premium, o dono menciona o bot (@Moshiini) e edita a loja escrevendo em português — preço, estoque, status, renomear, descrição e painéis. Perguntas sobre a loja também funcionam.",
   },
   {
     id: "dono-do-bot",
@@ -273,7 +276,7 @@ const CENTRAL_SECTIONS = [
 ]
 
 const OWNER_SECTIONS = [
-  { name: "Licenças & Equipe", desc: "Cobrança de licença via PIX, gerentes de loja por servidor, bloqueio de lojas, definir/verificar licenças e aviso geral." },
+  { name: "Licenças & Equipe", desc: "Cobrança de licença via PIX (com validação automática por IA), gerentes de loja por servidor, bloqueio de lojas, definir/verificar licenças, remover assinatura (desfaz uma ativação automática) e aviso geral." },
   { name: "Modmail", desc: "Bloquear/desbloquear usuário e definir a categoria dos tickets de suporte." },
   { name: "Ações Globais", desc: "Limpar lojas inativas (30+ dias), remover um cargo de todos os membros, DM pra todos (com confirmação) e status global." },
   { name: "Sincronizar Comandos", desc: "Reenvia a lista de comandos ao Discord, útil quando comando novo demora a aparecer." },
@@ -394,7 +397,7 @@ export function DocsPage() {
               <div className="mb-6 flex items-center gap-4">
                 <span
                   aria-hidden
-                  className="grid size-12 shrink-0 place-items-center rounded-2xl border-[3px] border-night-soft bg-accent shadow-[3px_3px_0_var(--color-night-soft)]"
+                  className="grid size-12 shrink-0 place-items-center rounded-2xl border-[3px] border-night-soft bg-amber shadow-[3px_3px_0_var(--color-night-soft)]"
                 >
                   <group.icon className="size-6" />
                 </span>
@@ -464,7 +467,7 @@ export function DocsPage() {
                 key={sec.name}
                 className="rounded-2xl border-[3px] border-white/25 bg-white/5 p-4"
               >
-                <h4 className="font-display text-lg font-semibold text-[#32edbb]">
+                <h4 className="font-display text-lg font-semibold text-mint">
                   {sec.name}
                 </h4>
                 <p className="mt-1 text-sm leading-relaxed text-white/75">{sec.desc}</p>
@@ -476,7 +479,7 @@ export function DocsPage() {
 
       {/* ---------- CTA ---------- */}
       <section className="mx-auto max-w-6xl px-5 pt-6 pb-4 sm:px-6" aria-labelledby="cta">
-        <div className="neo-card bg-[#a78bfa] p-8 text-center sm:p-12">
+        <div className="neo-card bg-lilac p-8 text-center sm:p-12">
           <h2 className="mx-auto max-w-2xl text-3xl sm:text-4xl">
             Agora é só chamar a Moshiini pro seu servidor
           </h2>

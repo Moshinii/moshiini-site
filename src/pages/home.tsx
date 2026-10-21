@@ -1,4 +1,6 @@
+import type { CSSProperties } from "react"
 import {
+  BotIcon,
   CheckIcon,
   CrownIcon,
   GiftIcon,
@@ -11,44 +13,49 @@ import {
   TicketCheckIcon,
 } from "lucide-react"
 import { Link } from "react-router-dom"
+import {
+  EdicaoIaMock,
+  PixEntregaMock,
+  PainelVendasMock,
+  RascunhoIaMock,
+} from "@/components/discord/screens"
 import { CtaButton } from "@/components/site/cta-button"
 import { Hl } from "@/components/site/hl"
 import { SectionHead } from "@/components/site/section-head"
 import { StepCard } from "@/components/site/step-card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { INVITE_URL, SERVER_URL, asset } from "@/lib/site"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
 const FEATURES = [
   {
     icon: LayoutGridIcon,
-    tone: "bg-primary",
+    tone: "bg-mint",
     title: "Painéis de venda",
     text: "Monte vitrines com produtos, preços, estoque e emojis. O cliente escolhe no menu suspenso, sem digitar comando.",
   },
   {
     icon: ShoppingCartIcon,
-    tone: "bg-accent",
+    tone: "bg-amber",
     title: "Carrinho e cupons",
     text: "Sacola com ajuste de quantidades, cupom de desconto e calculadora que mostra o valor antes de fechar o pedido.",
   },
   {
     icon: QrCodeIcon,
-    tone: "bg-[#a78bfa]",
+    tone: "bg-lilac",
     title: "PIX com QR Code",
     text: "Cobrança gerada na hora dentro de um ticket privado. O dinheiro cai direto na chave PIX da sua loja.",
   },
   {
     icon: TicketCheckIcon,
-    tone: "bg-[#ff8ab5]",
+    tone: "bg-rose",
     title: "Tickets de entrega",
     text: "Cada compra abre um canal privado: o cliente envia o comprovante, a staff confirma e entrega ali mesmo.",
   },
   {
     icon: GiftIcon,
-    tone: "bg-[#5865f2] text-white",
+    tone: "bg-blurple text-white",
     title: "Sorteios e convites",
     text: "Sorteios com requisito de cargo ou mensagens e sistema de convites com recompensa pra espalhar seu servidor.",
   },
@@ -93,17 +100,51 @@ const FREE_FEATURES = [
 
 const PREMIUM_FEATURES = [
   "Produtos e painéis ilimitados",
+  "Editar a loja por texto: mencione o bot e fale",
+  "Comprovante confirmado por IA (nas lojas e na licença)",
   "10 gerações de loja com IA por dia",
   "Tudo do plano Gratuito",
-  "R$ 0,50 por dia, pago via PIX",
-  "Ao renovar, os itens desativados voltam sozinhos",
+  "Ativação automática: paga o PIX e destrava na hora",
 ]
+
+const MARQUEE_ITEMS = [
+  "Sem taxa nas vendas",
+  "PIX com QR Code",
+  "Sacola e cupons",
+  "Tickets de entrega",
+  "Loja com IA",
+  "Edita por texto",
+  "Anti-hack",
+  "Sorteios",
+  "Convites com prêmio",
+]
+
+function Marquee() {
+  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
+  return (
+    <div className="border-y-[3px] border-night-soft bg-amber py-3" aria-hidden>
+      <div className="marquee-mask overflow-hidden">
+        <ul className="flex w-max animate-marquee items-center gap-8 pr-8">
+          {items.map((item, i) => (
+            <li
+              key={i}
+              className="flex items-center gap-8 font-display text-base font-bold whitespace-nowrap text-night-soft"
+            >
+              {item}
+              <span className="text-lg">✦</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
+}
 
 export function HomePage() {
   return (
     <>
       {/* ---------- HERO ---------- */}
-      <section className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-5 pt-36 pb-16 text-center sm:px-6 sm:pt-44 sm:pb-24">
+      <section className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-5 pt-36 pb-16 text-center sm:px-6 sm:pt-44 sm:pb-20">
         <Badge variant="default" className="tilt tilt-l-sm tilt-hover">
           <SparklesIcon />
           Bot de vendas para Discord
@@ -139,16 +180,32 @@ export function HomePage() {
           </li>
         </ul>
 
-        <div className="tilt tilt-r tilt-hover neo-card mt-4 max-w-xl overflow-hidden p-3">
-          <img
-            src={asset("images/logo.png")}
-            alt="Mascote da Moshiini: uma garota com chapéu de cogumelo vermelho"
-            width={512}
-            height={512}
-            className="w-full rounded-2xl border-[3px] border-night-soft"
-          />
+        {/* painel de vendas do bot, recriado em HTML/CSS */}
+        <div className="relative mt-8 w-full max-w-2xl">
+          <PainelVendasMock className="tilt tilt-r tilt-hover mx-auto" />
+
+          <span
+            aria-hidden
+            className="neo-pill animate-float absolute -top-4 -left-2 bg-rose sm:-left-8"
+            style={{ "--float-rot": "-3deg" } as CSSProperties}
+          >
+            PIX na hora ✦
+          </span>
+          <span
+            aria-hidden
+            className="neo-pill animate-float-late absolute -right-2 -bottom-5 bg-mint sm:-right-6"
+            style={{ "--float-rot": "2deg" } as CSSProperties}
+          >
+            zero taxa ✦
+          </span>
         </div>
+
+        <p className="text-sm text-muted-foreground">
+          Essa tela é HTML e CSS de verdade, recriada do bot — role a página e veja as outras.
+        </p>
       </section>
+
+      <Marquee />
 
       {/* ---------- RECURSOS ---------- */}
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-24" aria-labelledby="recursos">
@@ -191,13 +248,13 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ---------- CRIAR LOJA COM IA ---------- */}
+      {/* ---------- IA ---------- */}
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-24" aria-labelledby="ia">
-        <div className="neo-card grid items-center gap-8 bg-night p-6 text-white sm:p-10 lg:grid-cols-2 lg:gap-12">
+        <div className="neo-card grid items-center gap-10 bg-night p-6 text-white sm:p-10 lg:grid-cols-2 lg:gap-12">
           <div className="flex flex-col items-start gap-5">
             <Badge variant="amber">
               <SparklesIcon />
-              Criar loja com IA
+              IA na sua loja
             </Badge>
             <h2 className="text-3xl sm:text-4xl">
               Você descreve.{" "}
@@ -206,48 +263,71 @@ export function HomePage() {
             <p className="leading-relaxed text-white/80">
               Conte o que você vende — nicho, itens e preços — e a IA gera um
               rascunho completo: painel de vendas (título, descrição e cor) e
-              produtos com nome, preço, estoque e emoji.
+              produtos com nome, preço, estoque e emoji. Depois de criada, a
+              loja continua obedecendo você: é só mencionar o bot e falar o que
+              quer mudar.
             </p>
             <ul className="flex flex-col gap-3 text-white/90">
               <li className="flex items-start gap-3">
-                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-primary text-night">
+                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-mint text-night">
                   <CheckIcon className="size-4" />
                 </span>
                 Você revisa tudo antes de qualquer coisa ser criada
               </li>
               <li className="flex items-start gap-3">
-                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-primary text-night">
+                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-mint text-night">
                   <CheckIcon className="size-4" />
                 </span>
                 Editar ou remover itens do rascunho não gasta geração
               </li>
               <li className="flex items-start gap-3">
-                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-primary text-night">
+                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-mint text-night">
                   <CheckIcon className="size-4" />
                 </span>
-                3 gerações por dia no plano Gratuito, 10 no Premium
+                No Premium: edição por texto, leitor de comprovante e mais
+                gerações
               </li>
             </ul>
-            <Button variant="default" render={<Link to="/como-funciona" />}>
+            <CtaButton to="/como-funciona" external={false}>
               Ver o passo a passo
-            </Button>
+            </CtaButton>
           </div>
 
-          <figure className="tilt tilt-r tilt-hover relative">
-            <div className="rounded-2xl border-[3px] border-night bg-white p-2 shadow-[6px_6px_0_rgb(50_237_187)]">
-              <img
-                src={asset("images/ia-rascunho.png")}
-                alt="Rascunho gerado pela IA dentro do Discord: painel de Robux com produto, preço e estoque, e botões para criar tudo, editar, gerar de novo ou descartar"
-                width={607}
-                height={410}
-                loading="lazy"
-                className="w-full rounded-xl border-2 border-night/10"
-              />
-            </div>
-            <figcaption className="neo-pill absolute -bottom-4 left-4 bg-white">
-              Rascunho real gerado pela IA ✨
-            </figcaption>
-          </figure>
+          <div className="relative">
+            <RascunhoIaMock className="tilt tilt-r-sm tilt-hover shadow-[6px_6px_0_var(--color-mint)]" />
+            <span className="neo-pill absolute -bottom-4 left-4 bg-white">
+              Rascunho real da IA ✨
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- EDITAR POR TEXTO ---------- */}
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-24" aria-labelledby="editar-texto">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="flex flex-col items-start gap-5">
+            <Badge variant="mint">
+              <BotIcon />
+              Edição por texto · Premium
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl">
+              Mencione o bot e <Hl tone="mint">fale o que quer mudar</Hl>
+            </h2>
+            <p className="leading-relaxed text-muted-foreground">
+              Sem abrir menu nenhum:{" "}
+              <em>@Moshiini muda o preço do Mush para 1 real</em> — e pronto.
+              Preço, estoque, status, renomear, descrição, título e cor de
+              painel: o bot aplica na hora, mostra o antes → depois e
+              ressincroniza os painéis sozinho. Perguntas também funcionam:{" "}
+              <em>quantos produtos eu tenho?</em>
+            </p>
+            <ul className="flex flex-wrap gap-2">
+              <li className="neo-pill">Frases comuns rodam sem IA, na hora</li>
+              <li className="neo-pill">Mostra o antes → depois de cada campo</li>
+              <li className="neo-pill">Só o dono da loja consegue usar</li>
+            </ul>
+          </div>
+          <EdicaoIaMock className="tilt tilt-l-sm tilt-hover" />
         </div>
       </section>
 
@@ -261,7 +341,7 @@ export function HomePage() {
               Grátis pra começar, <Hl tone="amber">barato pra crescer</Hl>
             </>
           }
-          lede="Sem taxa e sem comissão sobre suas vendas em nenhum plano. A licença Premium só destrava os limites de criação."
+          lede="Sem taxa e sem comissão sobre suas vendas em nenhum plano. A licença Premium destrava os limites de criação e as funções de IA."
           className="mb-12"
         />
         <div className="grid items-stretch gap-6 lg:grid-cols-2">
@@ -277,7 +357,7 @@ export function HomePage() {
             <ul className="flex flex-col gap-3">
               {FREE_FEATURES.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night-soft bg-primary text-night-soft">
+                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night-soft bg-mint text-night-soft">
                     <CheckIcon className="size-4" />
                   </span>
                   <span className="leading-relaxed">{item}</span>
@@ -306,7 +386,7 @@ export function HomePage() {
             <ul className="flex flex-col gap-3">
               {PREMIUM_FEATURES.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-accent text-night">
+                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-amber text-night">
                     <CheckIcon className="size-4" />
                   </span>
                   <span className="leading-relaxed text-white/90">{item}</span>
@@ -319,8 +399,8 @@ export function HomePage() {
               </CtaButton>
             </div>
             <p className="text-sm text-white/60">
-              Ativação após a confirmação do pagamento, direto no Discord com
-              /loja mudardeplano.
+              Ativação instantânea: paga o PIX em <strong>/loja mudardeplano</strong>,
+              envia o comprovante na DM e a IA valida e destrava na hora.
             </p>
           </Card>
         </div>
@@ -348,9 +428,36 @@ export function HomePage() {
             </li>
           ))}
         </ol>
-        <p className="mt-8 text-center text-muted-foreground">
+
+        {/* o ticket inteiro: PIX → comprovante → entrega */}
+        <div className="mt-16 grid items-center gap-10 lg:grid-cols-[1fr_minmax(0,30rem)]">
+          <div className="flex flex-col items-start gap-5">
+            <Badge variant="mint">
+              <QrCodeIcon />
+              Dentro do ticket
+            </Badge>
+            <h3 className="text-2xl sm:text-3xl">
+              O pagamento e a entrega moram no <Hl tone="mint">mesmo canal</Hl>
+            </h3>
+            <p className="leading-relaxed text-muted-foreground">
+              Finalizada a sacola, a Moshiini abre um ticket privado com o QR
+              Code PIX. O comprador anexa o comprovante e a entrega acontece
+              ali mesmo, com histórico preservado. Nas lojas{" "}
+              <strong className="text-night-soft">Premium</strong>, a IA confere
+              o comprovante (imagem ou PDF) e confirma sozinha quando tudo bate;
+              fora dela, a staff confirma como sempre.
+            </p>
+            <p className="leading-relaxed text-muted-foreground">
+              A chave PIX é <strong className="text-night-soft">sua</strong>: o
+              bot não vê, não segura e não cobra comissão sobre nenhum real.
+            </p>
+          </div>
+          <PixEntregaMock className="tilt tilt-l-sm tilt-hover" />
+        </div>
+
+        <p className="mt-10 text-center text-muted-foreground">
           Quer o detalhe de cada passo?{" "}
-          <Link to="/como-funciona" className="font-semibold text-night-soft underline underline-offset-4 outline-none hover:text-[#5865f2]">
+          <Link to="/como-funciona" className="font-semibold text-night-soft underline underline-offset-4 outline-none hover:text-blurple">
             Veja como funciona
           </Link>
         </p>
@@ -393,12 +500,12 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* atalho visual extra do painel (mensagens/modmail) */}
+      {/* ---------- SUPORTE ---------- */}
       <section className="mx-auto max-w-6xl px-5 py-12 sm:px-6" aria-label="Suporte por ticket">
         <Card hoverable className="flex flex-col items-center gap-4 p-6 text-center sm:flex-row sm:text-left">
           <span
             aria-hidden
-            className="grid size-12 shrink-0 place-items-center rounded-2xl border-[3px] border-night-soft bg-[#5865f2] text-white shadow-[3px_3px_0_var(--color-night-soft)]"
+            className="grid size-12 shrink-0 place-items-center rounded-2xl border-[3px] border-night-soft bg-blurple text-white shadow-[3px_3px_0_var(--color-night-soft)]"
           >
             <MessagesSquareIcon className="size-6" />
           </span>
@@ -406,7 +513,7 @@ export function HomePage() {
             <span className="font-semibold text-night-soft">Ficou alguma dúvida?</span>{" "}
             Fale com a gente no servidor oficial, mande uma DM pro bot (o modmail
             abre um ticket com a staff) ou confira o{" "}
-            <Link to="/faq" className="font-semibold text-night-soft underline underline-offset-4 outline-none hover:text-[#5865f2]">
+            <Link to="/faq" className="font-semibold text-night-soft underline underline-offset-4 outline-none hover:text-blurple">
               FAQ
             </Link>
             .

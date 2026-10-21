@@ -1,13 +1,13 @@
 import type { ReactNode } from "react"
 import { Card } from "@/components/ui/card"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
 const TONES = [
-  "bg-primary",
-  "bg-accent",
-  "bg-[#a78bfa]",
-  "bg-[#ff8ab5]",
-  "bg-[#5865f2] text-white",
+  "bg-mint",
+  "bg-amber",
+  "bg-lilac",
+  "bg-rose",
+  "bg-blurple text-white",
   "bg-night text-white",
 ]
 

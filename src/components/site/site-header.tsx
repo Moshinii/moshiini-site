@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { ArrowUpRightIcon, MenuIcon, XIcon } from "lucide-react"
 import { Link, NavLink, useLocation } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+import { Button, ButtonLink } from "@/components/ui/button"
 import { INVITE_URL, SERVER_URL, asset } from "@/lib/site"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
   { to: "/", label: "Início" },
@@ -68,7 +68,7 @@ export function SiteHeader() {
                 className={cn(
                   "rounded-full px-4 py-2 font-display text-sm font-semibold transition-colors duration-150 outline-none",
                   isActivePath(pathname, link.to)
-                    ? "bg-accent"
+                    ? "bg-amber"
                     : "hover:bg-muted"
                 )}
               >
@@ -78,18 +78,22 @@ export function SiteHeader() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button size="sm" className="hidden md:inline-flex" render={<a href={INVITE_URL} target="_blank" rel="noreferrer" />}>
+            <ButtonLink
+              size="sm"
+              href={INVITE_URL}
+              className="hidden md:inline-flex"
+            >
               Adicionar ao Discord
               <ArrowUpRightIcon />
-            </Button>
+            </ButtonLink>
             <Button
               size="icon"
               variant="white"
-              className="md:hidden"
               aria-expanded={open}
               aria-controls="menu-mobile"
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               onClick={toggle}
+              className="md:hidden"
             >
               {open ? <XIcon /> : <MenuIcon />}
             </Button>
@@ -108,20 +112,20 @@ export function SiteHeader() {
                 onClick={close}
                 className={cn(
                   "rounded-2xl px-4 py-3 font-display text-base font-semibold outline-none",
-                  isActivePath(pathname, link.to) ? "bg-accent" : "hover:bg-muted"
+                  isActivePath(pathname, link.to) ? "bg-amber" : "hover:bg-muted"
                 )}
               >
                 {link.label}
               </NavLink>
             ))}
-            <Button className="mt-2" onClick={close} render={<a href={INVITE_URL} target="_blank" rel="noreferrer" />}>
+            <ButtonLink href={INVITE_URL} onClick={close} className="mt-2">
               Adicionar ao Discord
               <ArrowUpRightIcon />
-            </Button>
-            <Button variant="blurple" onClick={close} render={<a href={SERVER_URL} target="_blank" rel="noreferrer" />}>
+            </ButtonLink>
+            <ButtonLink href={SERVER_URL} variant="blurple" onClick={close}>
               Entrar no servidor
               <ArrowUpRightIcon />
-            </Button>
+            </ButtonLink>
           </div>
         ) : null}
       </div>

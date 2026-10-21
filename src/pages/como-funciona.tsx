@@ -1,6 +1,7 @@
 import {
   BellRingIcon,
   BotIcon,
+  CrownIcon,
   GiftIcon,
   KeyRoundIcon,
   LayoutGridIcon,
@@ -8,17 +9,24 @@ import {
   PackagePlusIcon,
   RepeatIcon,
   ShieldCheckIcon,
+  SparklesIcon,
   StoreIcon,
   UserCheckIcon,
 } from "lucide-react"
+import {
+  CentralAdminMock,
+  EdicaoIaMock,
+  LicencaIaMock,
+  RascunhoIaMock,
+} from "@/components/discord/screens"
 import { CtaButton } from "@/components/site/cta-button"
 import { Hl } from "@/components/site/hl"
 import { PageHead, SectionHead } from "@/components/site/section-head"
 import { StepCard } from "@/components/site/step-card"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
-import { INVITE_URL, asset } from "@/lib/site"
-import { cn } from "cn"
+import { INVITE_URL } from "@/lib/site"
+import { cn } from "@/lib/utils"
 
 const SELLER_STEPS = [
   {
@@ -72,7 +80,7 @@ const BUYER_STEPS = [
   },
   {
     title: "Receba e avalie",
-    text: "Envie o comprovante no ticket, a staff confirma e entrega ali mesmo. No fim, avalie o atendimento com estrelas.",
+    text: "Envie o comprovante no ticket e receba ali mesmo. Em lojas Premium, a IA confere o comprovante e confirma na hora. No fim, avalie com estrelas.",
   },
 ]
 
@@ -99,6 +107,34 @@ export function ComoFuncionaPage() {
         lede="A configuração é feita uma única vez pelo dono do servidor, tudo por botões e menus dentro da Central de Administração. Depois disso, a loja vende sozinha."
       />
 
+      {/* ---------- A CENTRAL, AO VIVO ---------- */}
+      <section className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-14" aria-labelledby="central">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="flex flex-col items-start gap-5">
+            <Badge variant="mint">
+              <SparklesIcon />
+              Central de Administração
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl">
+              Um painel de gestão <Hl tone="amber">só seu</Hl>, dentro do servidor
+            </h2>
+            <p className="leading-relaxed text-muted-foreground">
+              Rode <code className="cmd-chip text-sm">/painel_admin abrir</code> e
+              a Central aparece como mensagem efêmera: só você vê, sem poluir o
+              canal. Cada seção abre botões, menus e modais na mesma mensagem,
+              sempre com Voltar.
+            </p>
+            <p className="leading-relaxed text-muted-foreground">
+              A versão fixa (<code className="cmd-chip text-sm">/painel_admin fixo</code>)
+              fica presa num canal e <strong className="text-night-soft">nunca expira</strong> —
+              sobrevive a reinícios do bot. Perfeita pra administrar a loja pelo
+              celular, sem digitar nada.
+            </p>
+          </div>
+          <CentralAdminMock className="tilt tilt-r-sm tilt-hover" />
+        </div>
+      </section>
+
       {/* ---------- PARA QUEM VENDE ---------- */}
       <section className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20" aria-labelledby="vender">
         <SectionHead
@@ -124,7 +160,7 @@ export function ComoFuncionaPage() {
                 <div className="flex items-center gap-3">
                   <span
                     aria-hidden
-                    className="grid size-11 shrink-0 place-items-center rounded-full border-[3px] border-night-soft bg-primary font-display text-lg font-bold shadow-[3px_3px_0_var(--color-night-soft)]"
+                    className="grid size-11 shrink-0 place-items-center rounded-full border-[3px] border-night-soft bg-mint font-display text-lg font-bold shadow-[3px_3px_0_var(--color-night-soft)]"
                   >
                     {i + 1}
                   </span>
@@ -141,32 +177,12 @@ export function ComoFuncionaPage() {
             </li>
           ))}
         </ol>
-
-        <Card hoverable className="mt-8 flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center">
-          <Badge variant="amber">Dica</Badge>
-          <p className="leading-relaxed text-muted-foreground">
-            A Central fixa <span className="font-semibold text-night-soft">nunca expira</span>:
-            sobrevive a reinícios do bot e funciona pra sempre. Perfeita pra
-            administrar a loja pelo celular, sem digitar nada.
-          </p>
-        </Card>
       </section>
 
       {/* ---------- IA ---------- */}
       <section className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20" aria-labelledby="ia-setup">
-        <div className="grid items-center gap-8 lg:grid-cols-2">
-          <figure className="tilt tilt-l tilt-hover order-last lg:order-first">
-            <div className="rounded-2xl border-[3px] border-night-soft bg-white p-2 shadow-[6px_6px_0_var(--color-night-soft)]">
-              <img
-                src={asset("images/ia-modal.png")}
-                alt="Modal 'Criar loja com IA' no Discord, com a descrição da loja preenchida pedindo um painel de Robux"
-                width={478}
-                height={357}
-                loading="lazy"
-                className="w-full rounded-xl border-2 border-night/10"
-              />
-            </div>
-          </figure>
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <RascunhoIaMock className="tilt tilt-l-sm tilt-hover order-last lg:order-first" />
           <div className="flex flex-col items-start gap-5">
             <Badge variant="lilac">Atalho com IA</Badge>
             <h2 className="text-3xl sm:text-4xl">
@@ -184,6 +200,62 @@ export function ComoFuncionaPage() {
               <li className="neo-pill">Editar não gasta geração</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* ---------- EDITAR POR TEXTO (PREMIUM) ---------- */}
+      <section className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20" aria-labelledby="ia-texto">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <EdicaoIaMock className="tilt tilt-l-sm tilt-hover order-last lg:order-first" />
+          <div className="flex flex-col items-start gap-5">
+            <Badge variant="mint">
+              <BotIcon />
+              Premium · Edição por texto
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl">
+              Loja criada? <Hl tone="mint">Edite falando</Hl>
+            </h2>
+            <p className="leading-relaxed text-muted-foreground">
+              Mencione a Moshiini e escreva em português corriqueiro:{" "}
+              <em>“muda o preço do Mush para 1 real”</em>, <em>“estoque infinito
+              no produto VIP”</em>, <em>“desativa a Conta Premium”</em>. Preço,
+              estoque, status, renomear, descrição e painéis — aplica na hora e
+              mostra o antes → depois. Frases no padrão comum nem passam pela
+              IA: são resolvidas localmente, sem latência.
+            </p>
+            <p className="leading-relaxed text-muted-foreground">
+              E continua sendo só seu: nenhum outro membro consegue editar sua
+              loja por texto.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- PREMIUM AUTOMÁTICO ---------- */}
+      <section className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20" aria-labelledby="ia-licenca">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="flex flex-col items-start gap-5">
+            <Badge variant="amber">
+              <CrownIcon />
+              Premium · Ativação automática
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl">
+              Pagou o PIX, <Hl tone="amber">a licença ativa na hora</Hl>
+            </h2>
+            <p className="leading-relaxed text-muted-foreground">
+              Assinar o Premium é tão automático quanto o resto: em{" "}
+              <code className="cmd-chip text-sm">/loja mudardeplano</code> você
+              escolhe os dias, paga o PIX que chega na sua DM e envia o
+              comprovante na mesma conversa. A IA valida o comprovante — valor,
+              destinatário, data e o identificador da cobrança — e a assinatura
+              ativa em segundos, sem esperar ninguém aprovar.
+            </p>
+            <p className="leading-relaxed text-muted-foreground">
+              Se algo não bater, a aprovação manual cuida — e o dono do bot
+              recebe a análise da IA junto. Nada fica no limbo.
+            </p>
+          </div>
+          <LicencaIaMock className="tilt tilt-r-sm tilt-hover" />
         </div>
       </section>
 
@@ -235,7 +307,7 @@ export function ComoFuncionaPage() {
               >
                 <span
                   aria-hidden
-                  className="grid size-11 shrink-0 place-items-center rounded-2xl border-[3px] border-night-soft bg-accent shadow-[3px_3px_0_var(--color-night-soft)]"
+                  className="grid size-11 shrink-0 place-items-center rounded-2xl border-[3px] border-night-soft bg-amber shadow-[3px_3px_0_var(--color-night-soft)]"
                 >
                   <extra.icon className="size-5" />
                 </span>
@@ -248,7 +320,7 @@ export function ComoFuncionaPage() {
 
       {/* ---------- CTA ---------- */}
       <section className="mx-auto max-w-6xl px-5 pt-6 pb-4 sm:px-6" aria-labelledby="cta">
-        <div className="neo-card bg-accent p-8 text-center sm:p-12">
+        <div className="neo-card bg-amber p-8 text-center sm:p-12">
           <h2 className="mx-auto max-w-2xl text-3xl sm:text-4xl">
             Bora colocar sua loja no ar?
           </h2>
