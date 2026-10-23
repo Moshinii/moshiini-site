@@ -9,10 +9,22 @@ import { HomePage } from "@/pages/home"
 import { PrivacidadePage } from "@/pages/privacidade"
 import { TermosPage } from "@/pages/termos"
 
-function ScrollToTop() {
+const PAGE_TITLES: Record<string, string> = {
+  "/": "Moshiini Automações — Bot de vendas para Discord",
+  "/como-funciona": "Como funciona — Moshiini Automações",
+  "/faq": "Perguntas frequentes — Moshiini Automações",
+  "/docs": "Documentação dos comandos — Moshiini Automações",
+  "/termos": "Termos de Uso — Moshiini Automações",
+  "/privacidade": "Política de Privacidade — Moshiini Automações",
+}
+
+function RouteEffects() {
   const { pathname } = useLocation()
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+    // páginas estáticas são servidas com barra final (/termos/)
+    const path = pathname.replace(/\/+$/, "") || "/"
+    document.title = PAGE_TITLES[path] ?? PAGE_TITLES["/"]
   }, [pathname])
   return null
 }
@@ -20,7 +32,7 @@ function ScrollToTop() {
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <ScrollToTop />
+      <RouteEffects />
       <div className="flex min-h-svh flex-col">
         <SiteHeader />
         <main id="conteudo" className="flex-1">
