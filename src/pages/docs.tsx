@@ -273,6 +273,7 @@ const CENTRAL_SECTIONS = [
   { name: "Segurança & Honeypot", desc: "Ativar a armadilha anti-hack, ver status e bans, e desbanir usuários." },
   { name: "Manutenção & Relatórios", desc: "Estatísticas de vendas, exportar CSV, diagnóstico da loja e backup/restauração (isso pede administrador)." },
   { name: "Mensagens", desc: "Escrever um embed com título, descrição, imagens, cor e rodapé, com preview antes de enviar no canal." },
+  { name: "Parcerias", desc: "Rede de divulgação entre lojas: escolha o canal e personalize o anúncio (com prévia e moderação por IA) — sua loja divulga as outras e é divulgada por elas." },
 ]
 
 const OWNER_SECTIONS = [
@@ -280,6 +281,7 @@ const OWNER_SECTIONS = [
   { name: "Modmail", desc: "Bloquear/desbloquear usuário e definir a categoria dos tickets de suporte." },
   { name: "Ações Globais", desc: "Limpar lojas inativas (30+ dias), remover um cargo de todos os membros, DM pra todos (com confirmação) e status global." },
   { name: "Sincronizar Comandos", desc: "Reenvia a lista de comandos ao Discord, útil quando comando novo demora a aparecer." },
+  { name: "Modelo & API da IA", desc: "Trocar o modelo de IA, a URL do provedor e a chave em runtime, sem reiniciar o bot — com botão de restaurar o padrão." },
 ]
 
 function CommandCard({ cmd, index }: { cmd: Command; index: number }) {
@@ -459,13 +461,18 @@ export function DocsPage() {
             E dentro do Painel do Dono
           </h3>
           <p className="mt-1 text-white/70">
-            Só o dono da Moshiini abre. São 4 seções separadas da equipe da loja:
+            Só o dono da Moshiini abre. São 5 seções separadas da equipe da loja:
           </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {OWNER_SECTIONS.map((sec) => (
+            {OWNER_SECTIONS.map((sec, i) => (
               <div
                 key={sec.name}
-                className="rounded-2xl border-[3px] border-white/25 bg-white/5 p-4"
+                className={cn(
+                  "rounded-2xl border-[3px] border-white/25 bg-white/5 p-4",
+                  i === OWNER_SECTIONS.length - 1 &&
+                    OWNER_SECTIONS.length % 2 === 1 &&
+                    "sm:col-span-2"
+                )}
               >
                 <h4 className="font-display text-lg font-semibold text-mint">
                   {sec.name}

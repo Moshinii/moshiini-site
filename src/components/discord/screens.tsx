@@ -107,6 +107,9 @@ export function CentralAdminMock({ className }: { className?: string }) {
             <li>
               📩 <strong className={BOLD}>Mensagens</strong> — enviar mensagem embed pronta para um canal da loja.
             </li>
+            <li>
+              🤝 <strong className={BOLD}>Parcerias</strong> — Rede de divulgação entre lojas: escolha o canal, personalize o anúncio — sua loja divulga as outras e é divulgada por elas.
+            </li>
           </ul>
           <p className="mt-2 text-[12px] text-[#949ba4]">
             Selecione uma seção no menu abaixo. O painel não expira.
