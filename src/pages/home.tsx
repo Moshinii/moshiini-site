@@ -114,6 +114,8 @@ const MARQUEE_ITEMS = [
   "Tickets de entrega",
   "Loja com IA",
   "Edita por texto",
+  "Rede de parcerias",
+  "Moderação com IA",
   "Anti-hack",
   "Sorteios",
   "Convites com prêmio",
@@ -177,6 +179,15 @@ export function HomePage() {
           </li>
           <li className="neo-pill tilt tilt-l-sm tilt-hover">
             <span className="font-display text-lg font-bold">100%</span> por botões
+          </li>
+          <li>
+            <Link
+              to="/novidades"
+              className="neo-pill tilt tilt-r-sm tilt-hover bg-mint outline-none"
+              aria-label="Ver as novidades do bot"
+            >
+              <span className="font-display text-lg font-bold">Novo!</span> novidades do bot
+            </Link>
           </li>
         </ul>
 

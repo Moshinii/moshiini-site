@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { to: "/", label: "Início" },
   { to: "/como-funciona", label: "Como funciona" },
   { to: "/faq", label: "FAQ" },
+  { to: "/novidades", label: "Novidades" },
   { to: "/docs", label: "Docs" },
 ]
 

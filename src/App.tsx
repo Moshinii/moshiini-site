@@ -6,6 +6,7 @@ import { ComoFuncionaPage } from "@/pages/como-funciona"
 import { DocsPage } from "@/pages/docs"
 import { FaqPage } from "@/pages/faq"
 import { HomePage } from "@/pages/home"
+import { NovidadesPage } from "@/pages/novidades"
 import { PrivacidadePage } from "@/pages/privacidade"
 import { TermosPage } from "@/pages/termos"
 
@@ -14,6 +15,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/como-funciona": "Como funciona — Moshiini Automações",
   "/faq": "Perguntas frequentes — Moshiini Automações",
   "/docs": "Documentação dos comandos — Moshiini Automações",
+  "/novidades": "Novidades — Moshiini Automações",
   "/termos": "Termos de Uso — Moshiini Automações",
   "/privacidade": "Política de Privacidade — Moshiini Automações",
 }
@@ -41,6 +43,7 @@ export default function App() {
             <Route path="/como-funciona" element={<ComoFuncionaPage />} />
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/docs" element={<DocsPage />} />
+            <Route path="/novidades" element={<NovidadesPage />} />
             <Route path="/termos" element={<TermosPage />} />
             <Route path="/privacidade" element={<PrivacidadePage />} />
             <Route path="*" element={<HomePage />} />

@@ -33,6 +33,11 @@ const ROUTES = {
     description:
       "Referência completa dos 27 comandos da Moshiini: compras e sacola, central de administração da loja, PIX, sorteios, convites e moderação.",
   },
+  "/novidades": {
+    title: "Novidades — Moshiini Automações",
+    description:
+      "Changelog da Moshiini: moderação de anúncios por IA na rede de parcerias, prévia do anúncio, provas de entrega completas, troca de modelo de IA sem restart e melhorias de estabilidade do bot de vendas para Discord.",
+  },
   "/termos": {
     title: "Termos de Uso — Moshiini Automações",
     description:
