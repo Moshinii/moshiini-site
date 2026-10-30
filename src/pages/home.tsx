@@ -4,6 +4,8 @@ import {
   CheckIcon,
   CrownIcon,
   GiftIcon,
+  HandshakeIcon,
+  InboxIcon,
   LayoutGridIcon,
   MessagesSquareIcon,
   QrCodeIcon,
@@ -13,6 +15,7 @@ import {
   TicketCheckIcon,
 } from "lucide-react"
 import { Link } from "react-router-dom"
+import { BUY_FLOW, PLAN } from "@/lib/commands"
 import {
   EdicaoIaMock,
   PixEntregaMock,
@@ -51,7 +54,19 @@ const FEATURES = [
     icon: TicketCheckIcon,
     tone: "bg-rose",
     title: "Tickets de entrega",
-    text: "Cada compra abre um canal privado: o cliente envia o comprovante, a staff confirma e entrega ali mesmo.",
+    text: "Cada compra abre um canal privado: o cliente envia o comprovante e a entrega acontece ali mesmo. No Premium, a IA confirma o pagamento sozinha.",
+  },
+  {
+    icon: HandshakeIcon,
+    tone: "bg-lilac",
+    title: "Trocas com middleman",
+    text: "Troca segura entre membros: o bot abre um ticket com os dois lados e emite um recibo assinado digitalmente no fim — anti-fraude, com verificação.",
+  },
+  {
+    icon: InboxIcon,
+    tone: "bg-mint",
+    title: "Suporte por DM",
+    text: "Modmail de verdade: manda uma DM pro bot e ele abre um ticket direto com a staff. Suporte sem sair do privado.",
   },
   {
     icon: GiftIcon,
@@ -67,46 +82,6 @@ const FEATURES = [
   },
 ]
 
-const BUY_STEPS = [
-  {
-    title: "Abrir o painel da loja",
-    text: "O painel fica postado no canal da loja, com todos os produtos num menu suspenso.",
-  },
-  {
-    title: "Escolher o produto",
-    text: "Dá pra comprar direto ou usar a calculadora: quanto em R$ vira quantidade, e vice-versa.",
-  },
-  {
-    title: "Montar a sacola",
-    text: "Ajuste quantidades, remova itens e aplique um cupom de desconto, se tiver um.",
-  },
-  {
-    title: "Pagar no PIX",
-    text: "Ao finalizar, abre um ticket privado só seu com o QR Code da cobrança.",
-  },
-  {
-    title: "Receber a entrega",
-    text: "Anexe o comprovante, a staff confirma e entrega no próprio ticket. No fim, você avalia com estrelas.",
-  },
-]
-
-const FREE_FEATURES = [
-  "Até 5 produtos e 2 painéis",
-  "Vendas ilimitadas, sem taxa nem comissão",
-  "3 gerações de loja com IA por dia",
-  "Tickets, cupons, sorteios e convites",
-  "Downgrade gracioso: nada é apagado",
-]
-
-const PREMIUM_FEATURES = [
-  "Produtos e painéis ilimitados",
-  "Editar a loja por texto: mencione o bot e fale",
-  "Comprovante confirmado por IA (nas lojas e na licença)",
-  "10 gerações de loja com IA por dia",
-  "Tudo do plano Gratuito",
-  "Ativação automática: paga o PIX e destrava na hora",
-]
-
 const MARQUEE_ITEMS = [
   "Sem taxa nas vendas",
   "PIX com QR Code",
@@ -114,8 +89,10 @@ const MARQUEE_ITEMS = [
   "Tickets de entrega",
   "Loja com IA",
   "Edita por texto",
+  "Middleman",
   "Rede de parcerias",
-  "Moderação com IA",
+  "Verificação com captcha",
+  "Modmail",
   "Anti-hack",
   "Sorteios",
   "Convites com prêmio",
@@ -172,13 +149,13 @@ export function HomePage() {
 
         <ul className="flex flex-wrap items-center justify-center gap-3 sm:gap-4" aria-label="Destaques">
           <li className="neo-pill tilt tilt-l-sm tilt-hover">
-            <span className="font-display text-lg font-bold">R$ 0</span> pra começar
+            <span className="font-display text-lg font-bold tabular-nums">{PLAN.free.preco}</span> pra começar
           </li>
           <li className="neo-pill tilt tilt-r-sm tilt-hover">
-            <span className="font-display text-lg font-bold">10 min</span> de configuração
+            <span className="font-display text-lg font-bold tabular-nums">10 min</span> de configuração
           </li>
           <li className="neo-pill tilt tilt-l-sm tilt-hover">
-            <span className="font-display text-lg font-bold">100%</span> por botões
+            <span className="font-display text-lg font-bold tabular-nums">100%</span> por botões
           </li>
           <li>
             <Link
@@ -231,7 +208,7 @@ export function HomePage() {
           lede="O cliente compra por menus e botões. Você configura uma vez pela Central de Administração e depois é só tocar na tela."
           className="mb-12"
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((f, i) => (
             <Card
               key={f.title}
@@ -239,8 +216,8 @@ export function HomePage() {
               className={cn(
                 "flex flex-col gap-4 p-6",
                 "tilt tilt-hover",
-                i % 3 === 0 && "tilt-l-sm",
-                i % 3 === 2 && "tilt-r-sm"
+                i % 2 === 0 && "tilt-l-sm",
+                i % 2 === 1 && "tilt-r-sm"
               )}
             >
               <span
@@ -358,15 +335,17 @@ export function HomePage() {
         <div className="grid items-stretch gap-6 lg:grid-cols-2">
           <Card hoverable className="tilt tilt-l-sm tilt-hover flex flex-col gap-6 p-6 sm:p-8">
             <div className="flex items-center justify-between gap-3">
-              <h3 className="font-display text-3xl font-bold">Gratuito</h3>
+              <h3 className="font-display text-3xl font-bold">{PLAN.free.nome}</h3>
               <Badge variant="mint">Pra começar</Badge>
             </div>
-            <p className="font-display text-5xl font-bold">
-              R$ 0
-              <span className="text-lg font-medium text-muted-foreground"> pra sempre</span>
+            <p className="font-display text-5xl font-bold tabular-nums">
+              {PLAN.free.preco}
+              <span className="text-lg font-medium text-muted-foreground">
+                {" "}{PLAN.free.precoNota}
+              </span>
             </p>
             <ul className="flex flex-col gap-3">
-              {FREE_FEATURES.map((item) => (
+              {PLAN.free.features.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night-soft bg-mint text-night-soft">
                     <CheckIcon className="size-4" />
@@ -384,18 +363,20 @@ export function HomePage() {
 
           <Card tone="night" hoverable className="tilt tilt-r-sm tilt-hover flex flex-col gap-6 p-6 text-white sm:p-8">
             <div className="flex items-center justify-between gap-3">
-              <h3 className="font-display text-3xl font-bold">Premium</h3>
+              <h3 className="font-display text-3xl font-bold">{PLAN.premium.nome}</h3>
               <Badge variant="amber">
                 <CrownIcon />
                 Loja sem teto
               </Badge>
             </div>
-            <p className="font-display text-5xl font-bold">
-              R$ 0,50
-              <span className="text-lg font-medium text-white/70"> por dia</span>
+            <p className="font-display text-5xl font-bold tabular-nums">
+              {PLAN.premium.preco}
+              <span className="text-lg font-medium text-white/70">
+                {" "}{PLAN.premium.precoNota}
+              </span>
             </p>
             <ul className="flex flex-col gap-3">
-              {PREMIUM_FEATURES.map((item) => (
+              {PLAN.premium.features.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-night bg-amber text-night">
                     <CheckIcon className="size-4" />
@@ -424,17 +405,17 @@ export function HomePage() {
           kickerVariant="lilac"
           title={
             <>
-              Do painel à entrega em <Hl tone="rose">5 passos</Hl>
+              Do painel à entrega em <Hl tone="rose">{BUY_FLOW.length} passos</Hl>
             </>
           }
           lede="É assim que o seu cliente compra, no celular ou no PC — sempre por menus e botões."
           className="mb-12"
         />
         <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {BUY_STEPS.map((step, i) => (
+          {BUY_FLOW.map((step, i) => (
             <li key={step.title}>
               <StepCard n={i + 1} title={step.title} className="h-full">
-                {step.text}
+                {step.desc}
               </StepCard>
             </li>
           ))}

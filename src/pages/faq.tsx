@@ -47,10 +47,12 @@ const FAQ_ITEMS = [
     a: (
       <>
         Abra o painel da loja no canal de compras, escolha o produto no menu
-        suspenso e toque em <strong>Comprar</strong>. Monte a sacola (dá pra
-        ajustar quantidade e aplicar cupom) e toque em{" "}
-        <strong>Finalizar Compra</strong>. Vai abrir um ticket privado com o QR
-        Code PIX — pague, anexe o comprovante e a staff entrega ali mesmo.
+        suspenso e toque em <strong>Comprar</strong>. Informe a quantidade,
+        monte a sacola (dá pra ajustar, remover e aplicar cupom) e toque em{" "}
+        <strong>Finalizar Compra</strong>. Se a loja tiver Termos, aceite com um
+        botão e preencha o campo de entrega — aí abre o ticket privado com o QR
+        Code PIX e o copia-e-cola. Pague, anexe o comprovante e a staff entrega
+        ali mesmo.
       </>
     ),
   },
@@ -73,12 +75,14 @@ const FAQ_ITEMS = [
         Em lojas <strong>Gratuitas</strong>, a confirmação é manual pela staff —
         então pode levar alguns minutos fora do horário de pico. Anexe o
         comprovante no ticket e aguarde por ali. Em lojas{" "}
-        <strong>Premium</strong>, a IA confere o comprovante (imagem ou PDF) e
-        confirma sozinha quando tudo bate — valor, destinatário, data e o
-        identificador do pedido —; qualquer divergência volta para a equipe
-        conferir. Se a loja não responder, fale com a administração do
-        servidor. A Moshiini não consegue estornar compras, porque o dinheiro
-        não passa pelo bot.
+        <strong>Premium</strong>, a IA confere o comprovante (imagem até{" "}
+        <span className="tabular-nums">5 MB</span> ou PDF até{" "}
+        <span className="tabular-nums">8 MB</span>, até{" "}
+        <span className="tabular-nums">2</span> análises por canal) e confirma
+        sozinha quando tudo bate — valor, destinatário, data e o identificador
+        do pedido —; qualquer divergência volta para a equipe conferir. Se a
+        loja não responder, fale com a administração do servidor. A Moshiini
+        não consegue estornar compras, porque o dinheiro não passa pelo bot.
       </>
     ),
   },
@@ -86,10 +90,12 @@ const FAQ_ITEMS = [
     q: "O bot é grátis mesmo?",
     a: (
       <>
-        Sim. O plano Gratuito inclui até <strong>5 produtos</strong> e{" "}
-        <strong>2 painéis</strong> por servidor, com vendas ilimitadas, sem taxa
-        e sem comissão. Tickets, cupons, sorteios e convites também estão
-        liberados.
+        Sim. O plano Gratuito inclui até <strong className="tabular-nums">5 produtos ativos</strong> e{" "}
+        <strong className="tabular-nums">2 painéis ativos</strong> por servidor,
+        com vendas ilimitadas, sem taxa e sem comissão. Tickets, cupons,
+        sorteios, convites e{" "}
+        <strong className="tabular-nums">3 gerações de loja com IA por dia</strong>{" "}
+        também estão liberados.
       </>
     ),
   },
@@ -97,13 +103,14 @@ const FAQ_ITEMS = [
     q: "Quanto custa o Premium e o que muda?",
     a: (
       <>
-        O Premium custa <strong>R$ 0,50 por dia</strong> e remove os limites de
-        criação: produtos e painéis ilimitados, 10 gerações de loja com IA por
-        dia (no Gratuito são 3) e as funções de IA —{" "}
-        <strong>editar a loja por texto</strong> mencionando o bot e o{" "}
+        O Premium custa <strong className="tabular-nums">R$ 0,50 por dia</strong>{" "}
+        e remove os limites de criação: produtos e painéis ilimitados,{" "}
+        <span className="tabular-nums">10</span> gerações de loja com IA por dia
+        (no Gratuito são <span className="tabular-nums">3</span>) e as funções
+        de IA — <strong>editar a loja por texto</strong> mencionando o bot e o{" "}
         <strong>leitor de comprovante</strong> nos tickets. A ativação é no
-        Discord, com /loja mudardeplano: paga o PIX, envia o comprovante na DM
-        e a IA valida e destrava na hora.
+        Discord, com /loja mudardeplano: informa os dias no modal, o PIX chega
+        na DM e, com o pagamento conferido, a licença destrava na hora.
       </>
     ),
   },
@@ -111,12 +118,12 @@ const FAQ_ITEMS = [
     q: "Como funciona a ativação automática do Premium?",
     a: (
       <>
-        Depois de pagar o PIX da licença, toque em <strong>Já Paguei</strong> na
-        DM da cobrança e envie o comprovante (imagem ou PDF) na mesma conversa.
-        A IA confere o valor, o destinatário, a data e o identificador da
-        cobrança — tudo batendo, a assinatura ativa em segundos, sem esperar
-        aprovação. Se algo divergir ou a IA estiver fora do ar, o dono do bot
-        aprova manualmente como sempre. Nada fica no limbo.
+        Em <strong>/loja mudardeplano</strong>, um modal pergunta quantos dias
+        você quer e o PIX (QR Code e copia-e-cola) chega na sua DM. Envie o
+        comprovante (imagem ou PDF) na mesma conversa: o pagamento é conferido
+        — valor, destinatário, data e o identificador da cobrança — e a
+        assinatura ativa na hora, sem esperar aprovação. Se algo divergir, o
+        dono do bot aprova manualmente como sempre. Nada fica no limbo.
       </>
     ),
   },
@@ -138,10 +145,11 @@ const FAQ_ITEMS = [
     q: "Se a licença Premium expirar, eu perco minha loja?",
     a: (
       <>
-        Não. O downgrade é gracioso: os <strong>primeiros 5 produtos e 2
-        painéis</strong> continuam ativos e vendendo. Os excedentes são
-        desativados temporariamente — nada é apagado — e voltam sozinhos quando
-        você renovar.
+        Não. O downgrade é gracioso: os{" "}
+        <strong className="tabular-nums">primeiros 5 produtos e 2 painéis</strong>{" "}
+        continuam ativos e vendendo. Os excedentes são desativados
+        temporariamente — nada é apagado — e voltam sozinhos quando você
+        renovar.
       </>
     ),
   },

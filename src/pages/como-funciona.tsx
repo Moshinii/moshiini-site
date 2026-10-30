@@ -25,6 +25,7 @@ import { PageHead, SectionHead } from "@/components/site/section-head"
 import { StepCard } from "@/components/site/step-card"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
+import { BUY_FLOW, CENTRAL_SECTIONS } from "@/lib/commands"
 import { INVITE_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
@@ -37,7 +38,7 @@ const SELLER_STEPS = [
   {
     icon: StoreIcon,
     title: "Ative a loja grátis",
-    text: "Digite /loja vincular no seu servidor. A loja nasce na hora, no plano Gratuito, sem taxa e sem burocracia.",
+    text: "Digite /loja vincular no seu servidor. A loja nasce na hora, no plano Gratuito, sem taxa — e o Assistente de Setup abre em seguida com o checklist: canais, PIX, produtos e painéis.",
   },
   {
     icon: KeyRoundIcon,
@@ -52,45 +53,46 @@ const SELLER_STEPS = [
   {
     icon: PackagePlusIcon,
     title: "Cadastre os produtos",
-    text: "Na seção Produtos: nome, preço, estoque e descrição. Ou aperte ✨ Criar com IA e só revise o rascunho.",
+    text: "Na seção Produtos & Estoque, um formulário de 2 partes: preço, estoque, descrição e mais. Ou aperte ✨ Criar com IA e só revise o rascunho.",
   },
   {
     icon: LayoutGridIcon,
     title: "Poste o painel e fixe a Central",
-    text: "Na seção Painéis, publique o painel no canal da loja. Depois, /painel_admin fixo deixa a gestão presa num canal, 100% por botões.",
-  },
-]
-
-const BUYER_STEPS = [
-  {
-    title: "Abra o painel da loja",
-    text: "Ele fica postado no canal de compras do servidor, com os produtos num menu suspenso.",
-  },
-  {
-    title: "Escolha o produto",
-    text: "Botões de Comprar e calculadora embutida: veja o valor exato antes de se comprometer.",
-  },
-  {
-    title: "Monte a sacola",
-    text: "Ajuste quantidades, remova itens e aplique cupom de desconto, se tiver um.",
-  },
-  {
-    title: "Pague no PIX",
-    text: "Ao finalizar, um ticket privado abre com o QR Code da cobrança. O pagamento vai direto pra chave da loja.",
-  },
-  {
-    title: "Receba e avalie",
-    text: "Envie o comprovante no ticket e receba ali mesmo. Em lojas Premium, a IA confere o comprovante e confirma na hora. No fim, avalie com estrelas.",
+    text: "Na seção Painéis de Venda, publique o painel no canal da loja com prévia antes. Depois, /painel_admin fixo deixa a gestão presa num canal, 100% por botões.",
   },
 ]
 
 const EXTRAS = [
-  { icon: UserCheckIcon, label: "Verificação por captcha" },
-  { icon: ShieldCheckIcon, label: "Honeypot anti-hack" },
-  { icon: RepeatIcon, label: "Trocas com middleman" },
-  { icon: BellRingIcon, label: "Lembretes de licença" },
-  { icon: MessagesSquareIcon, label: "Modmail de suporte" },
-  { icon: GiftIcon, label: "Cupons e sorteios" },
+  {
+    icon: UserCheckIcon,
+    label: "Verificação por captcha",
+    desc: "Captcha por DM pra quem entra no servidor: 3 erros e são 5 minutos de espera — e quem não verificar leva kick no prazo que a loja configurar, 25 horas por padrão (0 desativa).",
+  },
+  {
+    icon: ShieldCheckIcon,
+    label: "Honeypot anti-hack",
+    desc: "Canal-armadilha pra conta invadida: quem fala ali leva ban temporário de 7 dias, com desbanimento automático.",
+  },
+  {
+    icon: RepeatIcon,
+    label: "Trocas com middleman",
+    desc: "Ticket privado com o bot de mediador e recibo assinado digitalmente. O convite expira em 15 minutos, com até 3 pendentes por pessoa.",
+  },
+  {
+    icon: BellRingIcon,
+    label: "Lembretes de licença",
+    desc: "O /loja plano mostra plano atual, uso dos limites e o vencimento do Premium — sem deixar a loja no escuro.",
+  },
+  {
+    icon: MessagesSquareIcon,
+    label: "Modmail de suporte",
+    desc: "A DM do bot vira ticket privado com a staff, com 5 minutos de intervalo entre um ticket e outro.",
+  },
+  {
+    icon: GiftIcon,
+    label: "Cupons e sorteios",
+    desc: "Suas mensagens viram moeda: cada giro da roleta de cupons custa 20 mensagens, e sorteios podem exigir mensagens ou cargo.",
+  },
 ]
 
 export function ComoFuncionaPage() {
@@ -121,8 +123,12 @@ export function ComoFuncionaPage() {
             <p className="leading-relaxed text-muted-foreground">
               Rode <code className="cmd-chip text-sm">/painel_admin abrir</code> e
               a Central aparece como mensagem efêmera: só você vê, sem poluir o
-              canal. Cada seção abre botões, menus e modais na mesma mensagem,
-              sempre com Voltar.
+              canal. São{" "}
+              <strong className="text-night-soft tabular-nums">
+                {CENTRAL_SECTIONS.length} seções
+              </strong>{" "}
+              — de Produtos &amp; Estoque a Segurança &amp; Honeypot — e cada uma
+              abre botões, menus e modais na mesma mensagem, sempre com Voltar.
             </p>
             <p className="leading-relaxed text-muted-foreground">
               A versão fixa (<code className="cmd-chip text-sm">/painel_admin fixo</code>)
@@ -189,14 +195,14 @@ export function ComoFuncionaPage() {
               Sem paciência pra cadastrar? <Hl tone="lilac">Descreva e pronto</Hl>
             </h2>
             <p className="leading-relaxed text-muted-foreground">
-              Na Central → Produtos → ✨ Criar com IA, escreva algo como
-              “loja de Robux: 1.000 Robux por R$ 30, estoque de 20 mil”. A IA
-              monta o painel e os produtos como rascunho — você revisa, edita e
-              publica quando quiser.
+              Na Central → Produtos &amp; Estoque → ✨ Criar com IA, escreva algo
+              como “loja de Robux: 1.000 Robux por R$ 30, estoque de 20 mil”. A
+              IA monta o painel e os produtos como rascunho — você revisa, edita
+              e publica quando quiser.
             </p>
             <ul className="flex flex-wrap gap-2">
-              <li className="neo-pill">3 gerações/dia no Gratuito</li>
-              <li className="neo-pill">10 gerações/dia no Premium</li>
+              <li className="neo-pill tabular-nums">3 gerações/dia no Gratuito</li>
+              <li className="neo-pill tabular-nums">10 gerações/dia no Premium</li>
               <li className="neo-pill">Editar não gasta geração</li>
             </ul>
           </div>
@@ -244,11 +250,10 @@ export function ComoFuncionaPage() {
             </h2>
             <p className="leading-relaxed text-muted-foreground">
               Assinar o Premium é tão automático quanto o resto: em{" "}
-              <code className="cmd-chip text-sm">/loja mudardeplano</code> você
-              escolhe os dias, paga o PIX que chega na sua DM e envia o
-              comprovante na mesma conversa. A IA valida o comprovante — valor,
-              destinatário, data e o identificador da cobrança — e a assinatura
-              ativa em segundos, sem esperar ninguém aprovar.
+              <code className="cmd-chip text-sm">/loja mudardeplano</code> um
+              modal pergunta quantos dias, o PIX (QR Code e copia-e-cola) chega
+              na sua DM e o pagamento é conferido na mesma conversa — a licença
+              ativa na hora, sem esperar ninguém aprovar.
             </p>
             <p className="leading-relaxed text-muted-foreground">
               Se algo não bater, a aprovação manual cuida — e o dono do bot
@@ -274,10 +279,10 @@ export function ComoFuncionaPage() {
           className="mb-10"
         />
         <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {BUYER_STEPS.map((step, i) => (
+          {BUY_FLOW.map((step, i) => (
             <li key={step.title}>
               <StepCard n={i + 1} title={step.title} className="h-full">
-                {step.text}
+                {step.desc}
               </StepCard>
             </li>
           ))}
@@ -311,7 +316,14 @@ export function ComoFuncionaPage() {
                 >
                   <extra.icon className="size-5" />
                 </span>
-                <span className="font-display text-lg font-semibold">{extra.label}</span>
+                <span className="flex flex-col gap-1">
+                  <span className="font-display text-lg font-semibold">
+                    {extra.label}
+                  </span>
+                  <span className="text-sm leading-relaxed text-muted-foreground">
+                    {extra.desc}
+                  </span>
+                </span>
               </Card>
             </li>
           ))}
