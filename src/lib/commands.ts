@@ -52,7 +52,7 @@ export const COMMAND_GROUPS: CommandGroup[] = [
         tag: "TODOS",
         desc: "Seu hub pessoal da loja, com 4 atalhos em botões.",
         fluxo: [
-          "Ver Minha Sacola: edita quantidade, remove item e aplica cupom (menu ou botão Aplicar Código)",
+          "Ver Minha Sacola: com a sacola em canal privado (padrão novo), aponta o seu canal; no modo clássico, edita quantidade, remove item e aplica cupom",
           "Finalizar Compra: se a loja tem Termos, aparece o aceite antes do campo de entrega",
           "Meu Histórico, Meu Gasto Total e Meus Cupons abrem o seu registro de compras",
         ],
@@ -250,7 +250,7 @@ export const COMMAND_GROUPS: CommandGroup[] = [
           "Confirma a ativação (confirmação chega por DM)",
           "O Assistente de Setup abre na sequência: checklist com canais, PIX, produtos e painéis",
         ],
-        nota: "Depois da 1ª ativação, só o dono da loja vinculada pode (re)vincular — o dono do servidor não assume a loja de outro.",
+        nota: "Hoje também dá pra ativar com 1 clique no botão “Ativar Minha Loja” da DM de boas-vindas — e o Assistente cria os canais da loja sozinho. Depois da 1ª ativação, só o dono da loja vinculada pode (re)vincular.",
       },
       {
         name: "/loja plano",

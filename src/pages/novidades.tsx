@@ -33,6 +33,64 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: "5.10.0",
+    date: "04/11/2026",
+    title: "Loja ativa em 1 clique + sacola em canal privado",
+    changes: [
+      {
+        kind: "novo",
+        title: "Quem adiciona o bot vira dono com 1 clique",
+        text: "A DM de boas-vindas agora traz o botão “Ativar Minha Loja”: um clique ativa a loja no plano grátis e abre o assistente — sem precisar saber de nenhum comando. Vale pra quem adicionou o bot e pro dono do servidor; membros comuns não passam, e ninguém assume loja de outro (mesma trava do /loja vincular). O botão continua valendo depois de reinícios e também funciona no canal do servidor quando a DM está fechada.",
+      },
+      {
+        kind: "novo",
+        title: "Botão “Criar Canais” — o bot monta a estrutura sozinho",
+        text: "No assistente de setup (e na Central → Configuração da Loja → Canais), um botão cria as categorias Compras e Suporte + a categoria Logs da Loja com 4 canais privados: logs da loja, entradas e saídas, avaliações e provas de entrega. Nunca sobrescreve canal já configurado, recria o que foi apagado e rodar de novo não duplica nada. Sem a permissão Gerenciar Canais, ele ensina como conceder em vez de falhar calado.",
+      },
+      {
+        kind: "novo",
+        title: "Sacola em canal privado, do 1º item até o ticket",
+        text: "Ao adicionar o 1º item no painel, o cliente ganha um canal privado “sacola-…” com a sacola viva: adicionar mais produtos pelo menu, editar/remover itens, aplicar cupom e FINALIZAR — tudo no mesmo canal. O checkout dentro do canal o converte no próprio ticket da compra (a equipe é chamada pra lá) — nasce um canal a menos por pedido. Depois de 30 min parado (configurável), o canal avisa e fecha sozinho, e os itens ficam salvos: a sacola reabre intacta na próxima compra. Quem preferir o modo antigo desliga na Central → Configuração da Loja → Carrinho.",
+      },
+    ],
+  },
+  {
+    version: "5.9.10",
+    date: "02/11/2026",
+    title: "Clique “Ver Minha Sacola” para de falhar em horário de pico",
+    changes: [
+      {
+        kind: "corrigido",
+        title: "Fim do 10062 no botão da sacola",
+        text: "Sob carga, a consulta ao banco acontecia antes de confirmar o clique e estourava a janela de 3 segundos do Discord — o cliente clicava e nada acontecia. Agora o clique é confirmado na hora (padrão já usado pelos outros botões do hub), com teste de regressão travando a ordem nos 4 caminhos.",
+      },
+    ],
+  },
+  {
+    version: "5.9.9",
+    date: "01/11/2026",
+    title: "Comprovante agora aparece na DM do dono (licença)",
+    changes: [
+      {
+        kind: "corrigido",
+        title: "Painel de aprovação chega com a imagem certa",
+        text: "O painel de divergência da licença passou a reenviar os bytes do MESMO anexo que a IA validou: imagem renderiza no embed, PDF chega como anexo abrível, e a caducidade da URL do CDN (~24h) não derruba mais a imagem de painéis antigos.",
+      },
+    ],
+  },
+  {
+    version: "5.9.8",
+    date: "28/10/2026",
+    title: "Parceria sem conteúdo divulgava casca vazia",
+    changes: [
+      {
+        kind: "corrigido",
+        title: "Loja sem “Editar Divulgação” sai do sorteio",
+        text: "Ativar a rede só exigia o canal — loja que nunca personalizou o anúncio entrava no sorteio e divulgava conteúdo 100% padrão. Agora o sorteio só escolhe parceiros com título e descrição preenchidos, e o botão Ativar orienta a editar a divulgação antes. Quem recebe continua divulgando os outros normalmente.",
+      },
+    ],
+  },
+  {
     version: "5.9.7",
     date: "28/10/2026",
     title: "Moderação por IA na rede de parcerias",
