@@ -69,7 +69,7 @@ const TERMOS: LegalDoc = {
           type: "ul",
           items: [
             "Os pagamentos PIX das compras vão **diretamente para a chave PIX cadastrada pela loja**. A Moshiini não recebe, não custodia e não intermedia os valores das vendas — por isso **não é possível solicitar estorno ou reembolso de compras à Moshiini**; o assunto é entre comprador e lojista.",
-            "A **licença Premium** (R$ 0,50/dia) é o único valor pago à Moshiini e é ativada após a confirmação do pagamento. Períodos já decorridos não são reembolsáveis. Lojas com a licença expirada mantêm as vendas ativas dentro dos limites do plano Gratuito, sem perda de dados.",
+            "A **licença Premium** (R$ 0,50/dia) é o único valor pago à Moshiini e é ativada após a confirmação do pagamento. Períodos já decorridos não são reembolsáveis. Lojas com a licença expirada mantêm as vendas ativas normalmente (produtos e painéis são ilimitados no plano Gratuito); as funções de IA pausam até a renovação. Sem perda de dados.",
             "Comprovantes falsificados, tentativas de burlar cobrança ou abuso do sistema de licenças podem resultar em **suspensão da loja**.",
           ],
         },

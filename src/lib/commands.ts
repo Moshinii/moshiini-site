@@ -255,14 +255,14 @@ export const COMMAND_GROUPS: CommandGroup[] = [
       {
         name: "/loja plano",
         tag: "DONO DO SERV",
-        desc: "Mostra o plano atual, o uso dos limites e o vencimento da licença.",
-        exemplo: "“3/5 produtos, 1/2 painéis”",
+        desc: "Mostra o plano atual, o uso da loja e o vencimento da licença.",
+        exemplo: "“Produtos ativos: 12 (ilimitado)”",
         nota: "Se existir fatura antiga do modelo de comissão, traz o botão “Já Paguei” pra quitação com auditoria.",
       },
       {
         name: "/loja mudardeplano",
         tag: "DONO DO SERV",
-        desc: "Compra ou renova a licença Premium (R$ 0,50/dia): criação ilimitada + recursos de IA.",
+        desc: "Compra ou renova a licença Premium (R$ 0,50/dia): recursos de IA — edição por texto e leitor de comprovante.",
         fluxo: [
           "Informa quantos dias no modal (já com licença ativa, pergunta “Estender Assinatura?”)",
           "Recebe o PIX (QR Code e copia-e-cola) na DM",
@@ -474,8 +474,7 @@ export const PLAN = {
     preco: "R$ 0",
     precoNota: "para sempre, sem taxa",
     features: [
-      "Painéis de venda ilimitados de visualização, com carrinho e PIX",
-      "5 produtos ativos e 2 painéis ativos",
+      "Produtos e painéis de venda ILIMITADOS, com carrinho e PIX",
       "Tickets de entrega, avaliação por estrelas e ranking",
       "Cupons, sorteios e convites com recompensa",
       "Verificação com captcha e honeypot anti-hack",
@@ -487,12 +486,10 @@ export const PLAN = {
     preco: "R$ 0,50",
     precoNota: "por dia — pague quantos dias quiser",
     features: [
-      "Criação ilimitada: produtos e painéis sem limite",
+      "Editar a loja mencionando o bot (@Moshiini) e escrevendo em português",
       "IA confere o comprovante do PIX e confirma o pagamento sozinha",
       "Criar loja com IA: 10 gerações por dia",
-      "Editar a loja mencionando o bot (@Moshiini) e escrevendo em português",
       "Anúncios de parceria mais frequentes (2–4 h)",
-      "Excedente do Grátis reativa sozinho ao renovar — nada é apagado",
     ],
   },
 }

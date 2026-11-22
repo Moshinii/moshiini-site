@@ -81,7 +81,7 @@ const EXTRAS = [
   {
     icon: BellRingIcon,
     label: "Lembretes de licença",
-    desc: "O /loja plano mostra plano atual, uso dos limites e o vencimento do Premium — sem deixar a loja no escuro.",
+    desc: "O /loja plano mostra plano atual, uso da loja e o vencimento do Premium — sem deixar a loja no escuro.",
   },
   {
     icon: MessagesSquareIcon,

@@ -90,10 +90,9 @@ const FAQ_ITEMS = [
     q: "O bot é grátis mesmo?",
     a: (
       <>
-        Sim. O plano Gratuito inclui até <strong className="tabular-nums">5 produtos ativos</strong> e{" "}
-        <strong className="tabular-nums">2 painéis ativos</strong> por servidor,
-        com vendas ilimitadas, sem taxa e sem comissão. Tickets, cupons,
-        sorteios, convites e{" "}
+        Sim. O plano Gratuito é <strong>ilimitado</strong>: produtos e painéis
+        de venda sem teto por servidor, com vendas ilimitadas, sem taxa e sem
+        comissão. Tickets, cupons, sorteios, convites e{" "}
         <strong className="tabular-nums">3 gerações de loja com IA por dia</strong>{" "}
         também estão liberados.
       </>
@@ -104,13 +103,14 @@ const FAQ_ITEMS = [
     a: (
       <>
         O Premium custa <strong className="tabular-nums">R$ 0,50 por dia</strong>{" "}
-        e remove os limites de criação: produtos e painéis ilimitados,{" "}
+        e libera as funções de IA: <strong>editar a loja por texto</strong>{" "}
+        mencionando o bot, o <strong>leitor de comprovante</strong> nos tickets
+        (a IA confirma o pagamento sozinha) e{" "}
         <span className="tabular-nums">10</span> gerações de loja com IA por dia
-        (no Gratuito são <span className="tabular-nums">3</span>) e as funções
-        de IA — <strong>editar a loja por texto</strong> mencionando o bot e o{" "}
-        <strong>leitor de comprovante</strong> nos tickets. A ativação é no
-        Discord, com /loja mudardeplano: informa os dias no modal, o PIX chega
-        na DM e, com o pagamento conferido, a licença destrava na hora.
+        (no Gratuito são <span className="tabular-nums">3</span>). Produtos e
+        painéis já são ilimitados no Grátis. A ativação é no Discord, com
+        /loja mudardeplano: informa os dias no modal, o PIX chega na DM e, com
+        o pagamento conferido, a licença destrava na hora.
       </>
     ),
   },
@@ -145,11 +145,10 @@ const FAQ_ITEMS = [
     q: "Se a licença Premium expirar, eu perco minha loja?",
     a: (
       <>
-        Não. O downgrade é gracioso: os{" "}
-        <strong className="tabular-nums">primeiros 5 produtos e 2 painéis</strong>{" "}
-        continuam ativos e vendendo. Os excedentes são desativados
-        temporariamente — nada é apagado — e voltam sozinhos quando você
-        renovar.
+        Não. Nada é desativado nem apagado: produtos e painéis continuam
+        ativos e vendendo normalmente — o plano Gratuito é ilimitado. O que
+        pausa são as funções de IA (edição por texto e leitor de
+        comprovante), e tudo volta sozinho quando você renovar.
       </>
     ),
   },

@@ -326,10 +326,10 @@ export function HomePage() {
           kickerVariant="amber"
           title={
             <>
-              Grátis pra começar, <Hl tone="amber">barato pra crescer</Hl>
+              Grátis pra vender, <Hl tone="amber">IA pra automatizar</Hl>
             </>
           }
-          lede="Sem taxa e sem comissão sobre suas vendas em nenhum plano. A licença Premium destrava os limites de criação e as funções de IA."
+          lede="Sem taxa e sem comissão sobre suas vendas em nenhum plano. Produtos e painéis são ilimitados de graça — a licença Premium libera as funções de IA."
           className="mb-12"
         />
         <div className="grid items-stretch gap-6 lg:grid-cols-2">
@@ -366,7 +366,7 @@ export function HomePage() {
               <h3 className="font-display text-3xl font-bold">{PLAN.premium.nome}</h3>
               <Badge variant="amber">
                 <CrownIcon />
-                Loja sem teto
+                Funções de IA
               </Badge>
             </div>
             <p className="font-display text-5xl font-bold tabular-nums">

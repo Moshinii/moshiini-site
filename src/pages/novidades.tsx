@@ -33,6 +33,28 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: "5.12.1",
+    date: "22/11/2026",
+    title: "Plano Grátis ILIMITADO — produtos e painéis sem teto",
+    changes: [
+      {
+        kind: "novo",
+        title: "Produtos e painéis ilimitados no plano Gratuito",
+        text: "Acabou o teto de 5 produtos e 2 painéis: qualquer servidor cria quantos produtos e painéis de venda quiser, de graça, sem upgrade. As vendas continuam ilimitadas como sempre — e a configuração na Central não muda nada.",
+      },
+      {
+        kind: "novo",
+        title: "Expirou o Premium? A loja segue 100% no ar",
+        text: "Com o Grátis ilimitado, nada é desativado quando a licença expira (ou é removida) — produtos e painéis continuam vendendo. Itens que ficaram pausados pelo regime antigo de limites voltam a vender sozinhos na próxima inicialização do bot.",
+      },
+      {
+        kind: "alterado",
+        title: "Premium agora é sobre as funções de IA",
+        text: "Com o Grátis ilimitado, a licença Premium (R$ 0,50/dia) passou a valer pelas funções de IA: editar a loja por texto mencionando o bot, leitor de comprovante automático nos tickets e 10 gerações de loja com IA por dia.",
+      },
+    ],
+  },
+  {
     version: "5.10.0",
     date: "04/11/2026",
     title: "Loja ativa em 1 clique + sacola em canal privado",
