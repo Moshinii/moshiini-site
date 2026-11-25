@@ -14,7 +14,7 @@ const ROUTES = {
   "/": {
     title: "Moshiini Automações — Bot de vendas para Discord",
     description:
-      "Moshiini Automações: o bot que transforma seu servidor do Discord em uma loja completa. Painéis de produtos, carrinho, cobrança PIX com QR Code, tickets de entrega, cupons e sorteios. Grátis pra começar, sem taxa sobre as vendas.",
+      "Moshiini Automações: o bot que transforma seu servidor do Discord em uma loja completa. Painéis de produtos, carrinho, cobrança PIX com QR Code, tickets de entrega, cupons e sorteios. Grátis pra começar, com 24 horas sem taxa.",
     ogDescription:
       "Monte sua loja no Discord em 10 minutos: produtos, carrinho, PIX com QR Code, tickets de entrega e cupons. Grátis pra começar.",
   },

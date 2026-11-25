@@ -4,7 +4,7 @@ const TERMOS: LegalDoc = {
   etiqueta: "Termos de uso",
   etiquetaVariant: "amber",
   title: "Termos de Uso",
-  meta: ["Versão 1.0", "Última atualização: outubro de 2025"],
+  meta: ["Versão 1.0", "Última atualização: novembro de 2026"],
   intro:
     "Ao adicionar o bot **Moshiini** a um servidor, criar uma loja, comprar em uma loja que use o bot ou contratar a licença Premium, você concorda com estes Termos de Uso. Leia com atenção antes de usar.",
   sections: [
@@ -63,13 +63,14 @@ const TERMOS: LegalDoc = {
       ],
     },
     {
-      heading: "Pagamentos e licença Premium",
+      heading: "Pagamentos, taxa e licença Premium",
       blocks: [
         {
           type: "ul",
           items: [
             "Os pagamentos PIX das compras vão **diretamente para a chave PIX cadastrada pela loja**. A Moshiini não recebe, não custodia e não intermedia os valores das vendas — por isso **não é possível solicitar estorno ou reembolso de compras à Moshiini**; o assunto é entre comprador e lojista.",
-            "A **licença Premium** (R$ 0,50/dia) é o único valor pago à Moshiini e é ativada após a confirmação do pagamento. Períodos já decorridos não são reembolsáveis. Lojas com a licença expirada mantêm as vendas ativas normalmente (produtos e painéis são ilimitados no plano Gratuito); as funções de IA pausam até a renovação. Sem perda de dados.",
+            "No plano Gratuito, a loja tem **24 horas sem taxa**, contadas desde a ativação. Depois, incide **comissão de 2% sobre cada venda entregue**, cobrada da loja em fatura PIX a cada ciclo de 15 dias (a partir de R$ 1,00, com 7 dias de prazo). Compra cancelada não gera taxa, o comprador não paga nenhum valor extra e fatura vencida sem pagamento suspende a loja até a quitação.",
+            "A **licença Premium** (R$ 0,50/dia) é ativada após a confirmação do pagamento e **isenta a loja da comissão** das vendas. Períodos já decorridos não são reembolsáveis. Lojas com a licença expirada mantêm as vendas ativas normalmente (produtos e painéis são ilimitados no plano Gratuito); as funções de IA pausam até a renovação. Sem perda de dados.",
             "Comprovantes falsificados, tentativas de burlar cobrança ou abuso do sistema de licenças podem resultar em **suspensão da loja**.",
           ],
         },

@@ -83,7 +83,7 @@ const FEATURES = [
 ]
 
 const MARQUEE_ITEMS = [
-  "Sem taxa nas vendas",
+  "Sem mensalidade",
   "PIX com QR Code",
   "Sacola e cupons",
   "Tickets de entrega",
@@ -137,7 +137,7 @@ export function HomePage() {
         <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
           Painéis de produtos, sacola, QR Code de pagamento e ticket de entrega:
           o cliente compra sem sair do servidor e você gerencia tudo por botões.
-          Sem taxa sobre as suas vendas.
+          Comece com 24 horas sem taxa — depois, 2% por venda entregue.
         </p>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row">
@@ -184,7 +184,7 @@ export function HomePage() {
             className="neo-pill animate-float-late absolute -right-2 -bottom-5 bg-mint sm:-right-6"
             style={{ "--float-rot": "2deg" } as CSSProperties}
           >
-            zero taxa ✦
+            24 h sem taxa ✦
           </span>
         </div>
 
@@ -326,10 +326,10 @@ export function HomePage() {
           kickerVariant="amber"
           title={
             <>
-              Grátis pra vender, <Hl tone="amber">IA pra automatizar</Hl>
+              Sem mensalidade, <Hl tone="amber">IA pra automatizar</Hl>
             </>
           }
-          lede="Sem taxa e sem comissão sobre suas vendas em nenhum plano. Produtos e painéis são ilimitados de graça — a licença Premium libera as funções de IA."
+          lede="No plano Gratuito são 24 horas sem taxa e, depois, 2% por venda entregue — com produtos e painéis ilimitados. A licença Premium isenta a loja da taxa e libera as funções de IA."
           className="mb-12"
         />
         <div className="grid items-stretch gap-6 lg:grid-cols-2">
@@ -366,7 +366,7 @@ export function HomePage() {
               <h3 className="font-display text-3xl font-bold">{PLAN.premium.nome}</h3>
               <Badge variant="amber">
                 <CrownIcon />
-                Funções de IA
+                Sem taxa e funções de IA
               </Badge>
             </div>
             <p className="font-display text-5xl font-bold tabular-nums">
@@ -441,7 +441,9 @@ export function HomePage() {
             </p>
             <p className="leading-relaxed text-muted-foreground">
               A chave PIX é <strong className="text-night-soft">sua</strong>: o
-              bot não vê, não segura e não cobra comissão sobre nenhum real.
+              dinheiro de cada venda cai direto nela e o bot não segura nenhum
+              real. Quando há taxa do plano, ela é cobrada à parte da loja —
+              nunca do cliente.
             </p>
           </div>
           <PixEntregaMock className="tilt tilt-l-sm tilt-hover" />

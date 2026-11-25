@@ -90,11 +90,30 @@ const FAQ_ITEMS = [
     q: "O bot é grátis mesmo?",
     a: (
       <>
-        Sim. O plano Gratuito é <strong>ilimitado</strong>: produtos e painéis
-        de venda sem teto por servidor, com vendas ilimitadas, sem taxa e sem
-        comissão. Tickets, cupons, sorteios, convites e{" "}
+        Sim — não tem mensalidade. O plano Gratuito é{" "}
+        <strong>ilimitado</strong>: produtos e painéis de venda sem teto por
+        servidor, com vendas ilimitadas. Nele, as primeiras{" "}
+        <span className="tabular-nums">24 horas</span> são sem taxa; depois, cada
+        venda entregue leva <span className="tabular-nums">2%</span> de taxa.
+        Tickets, cupons, sorteios, convites e{" "}
         <strong className="tabular-nums">3 gerações de loja com IA por dia</strong>{" "}
         também estão liberados.
+      </>
+    ),
+  },
+  {
+    q: "Como funciona a taxa do plano Gratuito?",
+    a: (
+      <>
+        A loja começa com <span className="tabular-nums">24 horas</span> sem
+        taxa, contadas desde a ativação. Depois, cada venda{" "}
+        <strong>entregue</strong> gera <span className="tabular-nums">2%</span>{" "}
+        de taxa pra loja — compra cancelada não conta, e o cliente não paga nada
+        a mais. O valor acumula e vira uma fatura PIX a cada ciclo de{" "}
+        <span className="tabular-nums">15 dias</span> (a partir de{" "}
+        <span className="tabular-nums">R$ 1,00</span>), com{" "}
+        <span className="tabular-nums">7 dias</span> de prazo. Dá pra acompanhar
+        e quitar em /loja plano. Quem tem a licença Premium fica isento.
       </>
     ),
   },
@@ -103,7 +122,8 @@ const FAQ_ITEMS = [
     a: (
       <>
         O Premium custa <strong className="tabular-nums">R$ 0,50 por dia</strong>{" "}
-        e libera as funções de IA: <strong>editar a loja por texto</strong>{" "}
+        e livra a loja da taxa de 2% das vendas. Também libera as funções de IA:{" "}
+        <strong>editar a loja por texto</strong>{" "}
         mencionando o bot, o <strong>leitor de comprovante</strong> nos tickets
         (a IA confirma o pagamento sozinha) e{" "}
         <span className="tabular-nums">10</span> gerações de loja com IA por dia
@@ -147,8 +167,9 @@ const FAQ_ITEMS = [
       <>
         Não. Nada é desativado nem apagado: produtos e painéis continuam
         ativos e vendendo normalmente — o plano Gratuito é ilimitado. O que
-        pausa são as funções de IA (edição por texto e leitor de
-        comprovante), e tudo volta sozinho quando você renovar.
+        muda: as funções de IA (edição por texto e leitor de comprovante)
+        pausam e a taxa de 2% por venda entregue volta a valer. Renovar
+        religa tudo.
       </>
     ),
   },

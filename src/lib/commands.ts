@@ -245,24 +245,24 @@ export const COMMAND_GROUPS: CommandGroup[] = [
       {
         name: "/loja vincular",
         tag: "DONO DO SERV",
-        desc: "Ativa a loja de graça, no plano Gratuito, sem taxa.",
+        desc: "Ativa a loja de graça no plano Gratuito, com 24 horas sem taxa — depois, 2% por venda entregue.",
         fluxo: [
           "Confirma a ativação (confirmação chega por DM)",
           "O Assistente de Setup abre na sequência: checklist com canais, PIX, produtos e painéis",
         ],
-        nota: "Hoje também dá pra ativar com 1 clique no botão “Ativar Minha Loja” da DM de boas-vindas — e o Assistente cria os canais da loja sozinho. Depois da 1ª ativação, só o dono da loja vinculada pode (re)vincular.",
+        nota: "Depois das 24 horas sem taxa, o plano Gratuito cobra 2% por venda entregue, numa fatura a cada 15 dias. Hoje também dá pra ativar com 1 clique no botão “Ativar Minha Loja” da DM de boas-vindas — e o Assistente cria os canais da loja sozinho. Depois da 1ª ativação, só o dono da loja vinculada pode (re)vincular.",
       },
       {
         name: "/loja plano",
         tag: "DONO DO SERV",
-        desc: "Mostra o plano atual, o uso da loja e o vencimento da licença.",
+        desc: "Mostra o plano atual, o teste sem taxa, as taxas acumuladas, as faturas e o vencimento da licença.",
         exemplo: "“Produtos ativos: 12 (ilimitado)”",
-        nota: "Se existir fatura antiga do modelo de comissão, traz o botão “Já Paguei” pra quitação com auditoria.",
+        nota: "Com fatura de taxa em aberto, traz o botão “Já Paguei” pra quitação — o dono do bot é avisado pra conferir o comprovante.",
       },
       {
         name: "/loja mudardeplano",
         tag: "DONO DO SERV",
-        desc: "Compra ou renova a licença Premium (R$ 0,50/dia): recursos de IA — edição por texto e leitor de comprovante.",
+        desc: "Compra ou renova a licença Premium (R$ 0,50/dia): fica sem taxa nas vendas e libera os recursos de IA — edição por texto e leitor de comprovante.",
         fluxo: [
           "Informa quantos dias no modal (já com licença ativa, pergunta “Estender Assinatura?”)",
           "Recebe o PIX (QR Code e copia-e-cola) na DM",
@@ -472,7 +472,7 @@ export const PLAN = {
   free: {
     nome: "Gratuito",
     preco: "R$ 0",
-    precoNota: "para sempre, sem taxa",
+    precoNota: "de mensalidade — 24 h sem taxa, depois 2% por venda entregue",
     features: [
       "Produtos e painéis de venda ILIMITADOS, com carrinho e PIX",
       "Tickets de entrega, avaliação por estrelas e ranking",
@@ -486,6 +486,7 @@ export const PLAN = {
     preco: "R$ 0,50",
     precoNota: "por dia — pague quantos dias quiser",
     features: [
+      "Sem taxa nas vendas — isento da taxa de 2% do plano Gratuito",
       "Editar a loja mencionando o bot (@Moshiini) e escrevendo em português",
       "IA confere o comprovante do PIX e confirma o pagamento sozinha",
       "Criar loja com IA: 10 gerações por dia",

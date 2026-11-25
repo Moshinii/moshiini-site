@@ -38,7 +38,7 @@ const SELLER_STEPS = [
   {
     icon: StoreIcon,
     title: "Ative a loja grátis",
-    text: "Digite /loja vincular no seu servidor. A loja nasce na hora, no plano Gratuito, sem taxa — e o Assistente de Setup abre em seguida com o checklist: canais, PIX, produtos e painéis.",
+    text: "Digite /loja vincular no seu servidor. A loja nasce na hora, no plano Gratuito, com 24 horas sem taxa — e o Assistente de Setup abre em seguida com o checklist: canais, PIX, produtos e painéis.",
   },
   {
     icon: KeyRoundIcon,
@@ -81,7 +81,7 @@ const EXTRAS = [
   {
     icon: BellRingIcon,
     label: "Lembretes de licença",
-    desc: "O /loja plano mostra plano atual, uso da loja e o vencimento do Premium — sem deixar a loja no escuro.",
+    desc: "O /loja plano mostra plano atual, taxas acumuladas, faturas e o vencimento do Premium — sem deixar a loja no escuro.",
   },
   {
     icon: MessagesSquareIcon,
