@@ -33,6 +33,33 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: "5.13.0",
+    date: "25/11/2026",
+    title: "Plano Grátis com taxa de 2% + quantidade mínima editável",
+    changes: [
+      {
+        kind: "alterado",
+        title: "Plano Grátis passa a ter taxa de 2% por venda entregue",
+        text: "O plano Grátis voltou a cobrar comissão: 2% sobre o valor de cada venda entregue. As primeiras 24 horas da loja são sem taxa, pra você testar com calma. O prazo conta desde a ativação: remover e readicionar o bot não renova o teste, e loja que já existe não ganha um teste novo. Só venda entregue gera taxa (compra cancelada, não) — e quem paga é a loja, o cliente não paga nenhum centavo a mais. O que já acumulou aparece em /loja plano.",
+      },
+      {
+        kind: "novo",
+        title: "Fatura PIX a cada 15 dias",
+        text: "A taxa acumula sem arredondar por venda (fração de centavo não se perde) e vira uma fatura PIX a cada ciclo de 15 dias, a partir de R$ 1,00 acumulados. O QR Code e o copia-e-cola chegam na DM do dono da loja, com 7 dias de prazo. Depois de pagar, toque em “Já Paguei” em /loja plano. Fatura que passa do vencimento sem pagamento suspende a loja — pra reativar, é pagar e acionar o suporte.",
+      },
+      {
+        kind: "alterado",
+        title: "Premium não paga taxa",
+        text: "Com a licença Premium (R$ 0,50 por dia), a loja fica isente da taxa. Vale a pena a partir de R$ 25 em vendas entregues por dia — 2% disso já custa R$ 0,50. A assinatura continua com as funções de IA: editar a loja mencionando o bot e leitura automática de comprovante nos tickets. Ative ou renove em /loja mudardeplano.",
+      },
+      {
+        kind: "novo",
+        title: "Quantidade mínima de compra agora pode ser editada",
+        text: "O limite de quantidade de um produto (a “Qtd. Mínima”, como vender só a partir de 1.000) não tinha onde ser mudado depois de criado: o modal de Editar já usa os 5 campos que o Discord permite. Agora a tela do produto tem o botão “Qtd. Mínima” — Central de Administração (/painel_admin) → Produtos & Estoque → Gerenciar Produto → escolha o produto. Digite o novo valor (10000 ou 10.000) e salve; 0 remove o mínimo. A tela atualiza na hora.",
+      },
+    ],
+  },
+  {
     version: "5.12.1",
     date: "22/11/2026",
     title: "Plano Grátis ILIMITADO — produtos e painéis sem teto",
